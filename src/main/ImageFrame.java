@@ -23,10 +23,10 @@ public class ImageFrame extends Frame {
         Toolkit tk = Toolkit.getDefaultToolkit();
 
         //Debug 1
-        File file = new File("c:\\juba\\used.bmp");
+        File file = new File("assets/victini_player.png");
         System.out.println("File exists: "
                 + file.exists());
-        Image im = tk.getImage("c:\\juba\\used.bmp");
+        Image im = tk.getImage("assets/victini_opponent.png");
         ImageFrame f = new ImageFrame(im);
         f.addWindowListener(new WindowAdapter() {
             @Override
