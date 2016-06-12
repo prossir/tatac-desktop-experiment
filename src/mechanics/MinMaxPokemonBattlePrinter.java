@@ -2,7 +2,7 @@ package mechanics;
 
 import java.util.List;
 import models.MinMaxBattleNode;
-import models.MinMaxPokemon;
+import models.Pokemon;
 
 /**
  * @author paolo
@@ -10,8 +10,8 @@ import models.MinMaxPokemon;
 public class MinMaxPokemonBattlePrinter {
     public static void results(MinMaxBattleNode lastNode) {
         while (lastNode!=null) {
-            List<MinMaxPokemon> pokemonsA = lastNode.getTeamA();
-            List<MinMaxPokemon> pokemonsB = lastNode.getTeamB();
+            List<Pokemon> pokemonsA = lastNode.getTeamA();
+            List<Pokemon> pokemonsB = lastNode.getTeamB();
             System.out.print("A<vs>B:");
             for (int i = 0; i < pokemonsA.size(); i++) {
                 System.out.print(pokemonsA.get(i).getName() + ">" + pokemonsA.get(i).getHitPoints() + " | ");

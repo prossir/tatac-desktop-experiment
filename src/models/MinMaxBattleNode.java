@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author paolo
  */
 public class MinMaxBattleNode {
-    private List<MinMaxPokemon> teamA;
-    private List<MinMaxPokemon> teamB;
+    private List<Pokemon> teamA;
+    private List<Pokemon> teamB;
     private List<MinMaxBattleNode> childNodes;
     private MinMaxBattleNode parentNode;
 
@@ -19,28 +18,28 @@ public class MinMaxBattleNode {
     /**
      * @return the teamA
      */
-    public List<MinMaxPokemon> getTeamA() {
+    public List<Pokemon> getTeamA() {
         return teamA;
     }
 
     /**
      * @param teamA the teamA to set
      */
-    public void setTeamA(List<MinMaxPokemon> teamA) {
+    public void setTeamA(List<Pokemon> teamA) {
         this.teamA = copyList(teamA);
     }
 
     /**
      * @return the teamB
      */
-    public List<MinMaxPokemon> getTeamB() {
+    public List<Pokemon> getTeamB() {
         return teamB;
     }
 
     /**
      * @param teamB the teamB to set
      */
-    public void setTeamB(List<MinMaxPokemon> teamB) {
+    public void setTeamB(List<Pokemon> teamB) {
         this.teamB = copyList(teamB);
     }
 
@@ -72,10 +71,10 @@ public class MinMaxBattleNode {
         this.parentNode = parentNode;
     }
 
-    private List<MinMaxPokemon> copyList(List<MinMaxPokemon> teamB) {
-        List<MinMaxPokemon> copyList = new ArrayList<>();
+    private List<Pokemon> copyList(List<Pokemon> teamB) {
+        List<Pokemon> copyList = new ArrayList<>();
         for (int i=0; i<teamB.size(); i++){
-            MinMaxPokemon p = new MinMaxPokemon(teamB.get(i));
+            Pokemon p = new Pokemon(teamB.get(i));
             copyList.add(p);
         }
         return copyList;

@@ -1,15 +1,24 @@
 package models;
 
 /**
- *
  * @author paolo
  */
-public class MinMaxMove {
+public class Move {
+    private String name;
+    private String type;
     private int basePower;
     private double accuracy;
-    private String type;
-    private String name;
 
+    public Move (){        
+    }
+    
+    public Move (Move e){
+        name = e.name;
+        type = e.type;
+        basePower=e.basePower;
+        accuracy = e.accuracy;
+    }
+    
     /**
      * @return the basePower
      */

@@ -2,7 +2,7 @@ package mechanics;
 
 import java.util.List;
 import models.MinMaxBattleNode;
-import models.MinMaxPokemon;
+import models.Pokemon;
 
 /**
  * @author paolo
@@ -13,8 +13,8 @@ public class MinMaxPokemonGenerator {
     public static MinMaxBattleNode lastNode = null;
 
     //Team A is max, Team B is min
-    public static MinMaxBattleNode generateMinMaxTree(List<MinMaxPokemon> teamA, int currentA,
-            List<MinMaxPokemon> teamB, int currentB, int teamPlaying) {
+    public static MinMaxBattleNode generateMinMaxTree(List<Pokemon> teamA, int currentA,
+            List<Pokemon> teamB, int currentB, int teamPlaying) {
         if (!flagDone) {
             MinMaxBattleNode head = new MinMaxBattleNode();
             head.setTeamA(teamA);
@@ -63,7 +63,7 @@ public class MinMaxPokemonGenerator {
         }
     }
 
-    private static int changePokemon(List<MinMaxPokemon> team, int curr) {
+    private static int changePokemon(List<Pokemon> team, int curr) {
         for (int i = 0; i < team.size(); i++) {
             if (i != curr && team.get(i).getHitPoints() != 0) {
                 return i;

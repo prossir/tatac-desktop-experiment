@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /* @author paolo */
-public class MinMaxPokemon {
+public class Pokemon {
 
     private String name;
     private int totalHitPoints;
@@ -12,14 +12,14 @@ public class MinMaxPokemon {
     private int attack;
     private int defense;
     private int speed;
-    private List<MinMaxMove> moves;
-    private List<MinMaxMove> choosenMoves;
+    private List<Move> moves;
+    private List<Move> choosenMoves;
 
-    public MinMaxPokemon() {
+    public Pokemon() {
 
     }
 
-    public MinMaxPokemon(MinMaxPokemon pokemon) {
+    public Pokemon(Pokemon pokemon) {
         name = pokemon.name;
         hitPoints = pokemon.hitPoints;
         attack = pokemon.attack;
@@ -102,14 +102,14 @@ public class MinMaxPokemon {
     /**
      * @return the moves
      */
-    public List<MinMaxMove> getMoves() {
+    public List<Move> getMoves() {
         return moves;
     }
 
     /**
      * @param moves the moves to set
      */
-    public void setMoves(List<MinMaxMove> moves) {
+    public void setMoves(List<Move> moves) {
         this.moves = moves;
     }
 
@@ -120,17 +120,17 @@ public class MinMaxPokemon {
      * @param moveNumber
      * @return
      */
-    public int damage(MinMaxPokemon pokemon, int moveNumber) {
+    public int damage(Pokemon pokemon, int moveNumber) {
         int damage = (int) ((this.attack / (pokemon.getDefense() + pokemon.getSpeed() * 0.1))
                 * moves.get(moveNumber).getBasePower());
         return damage;
     }
 
-    public void getChosenMoves(List<MinMaxMove> choosenMoves) {
+    public void getChosenMoves(List<Move> choosenMoves) {
         this.choosenMoves = choosenMoves;
     }
 
-    public List<MinMaxMove> getChosenMoves() {
+    public List<Move> getChosenMoves() {
         return choosenMoves;
     }
 
@@ -152,7 +152,7 @@ public class MinMaxPokemon {
         this.totalHitPoints = totalHitPoints;
     }
 
-    public boolean bestDamage(MinMaxPokemon p) {
+    public boolean bestDamage(Pokemon p) {
         int maxDamage = -9999;
         //jugada del 0 al 3, el numero 4 es cambiar
         for (int i = 0; i < this.getChosenMoves().size(); i++) {

@@ -7,16 +7,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import models.MinMaxMove;
-import models.MinMaxPokemon;
+import models.Move;
+import models.Pokemon;
 
 /**
  *
  * @author paolo
  */
 public class MinMaxPokemonLoader {
-    public static List<MinMaxPokemon> loadPokemon(){
-        List<MinMaxPokemon> challengers =  new ArrayList<>();
+    public static List<Pokemon> loadPokemon(){
+        List<Pokemon> challengers =  new ArrayList<>();
         try{
             
         File file = new File("input.txt");
@@ -28,7 +28,7 @@ public class MinMaxPokemonLoader {
         for (int i = 0 ; i < 20 ; i++){ // Una iteracion por cada pokemon
             line = bufferedReader.readLine();
         
-            MinMaxPokemon a = new MinMaxPokemon ();
+            Pokemon a = new Pokemon ();
                 a.setName(line);
                 line = bufferedReader.readLine();
                 a.setHitPoints(Integer.parseInt(line));
@@ -38,9 +38,9 @@ public class MinMaxPokemonLoader {
                 a.setDefense(Integer.parseInt(line));
                 line = bufferedReader.readLine();
                 a.setSpeed(Integer.parseInt(line));
-                ArrayList<MinMaxMove> powers = new ArrayList<>();
+                ArrayList<Move> powers = new ArrayList<>();
                 for (int j = 0 ; j < 8 ; j++){ //Una iteracion por cada poder 
-                    MinMaxMove move = new MinMaxMove ();
+                    Move move = new Move ();
                     line = bufferedReader.readLine();//nombre
                     move.setName(line);
                     line = bufferedReader.readLine();   //basepower
@@ -62,18 +62,18 @@ public class MinMaxPokemonLoader {
         return challengers;
      }
     
-    public static void init(List<MinMaxPokemon> pokemones, 
-            List<MinMaxPokemon> teamA, 
-            List<MinMaxPokemon> teamB, 
+    public static void init(List<Pokemon> pokemones, 
+            List<Pokemon> teamA, 
+            List<Pokemon> teamB, 
             int max){
         
         for (int i =0;i<max;i++){
             Random ran = new Random();
             int a = ran.nextInt(20);
             int b = ran.nextInt(20);
-            MinMaxPokemon pa = new MinMaxPokemon (pokemones.get(a));
+            Pokemon pa = new Pokemon (pokemones.get(a));
             choosePowers(pa);
-            MinMaxPokemon pb = new MinMaxPokemon (pokemones.get(b));
+            Pokemon pb = new Pokemon (pokemones.get(b));
             choosePowers(pb);
             teamA.add(pa);
             teamB.add(pb);
@@ -82,7 +82,7 @@ public class MinMaxPokemonLoader {
         
     }
     
-    private static void choosePowers(MinMaxPokemon p){    
+    private static void choosePowers(Pokemon p){    
         Random ran = new Random();
         int a = ran.nextInt(8);
         int b = ran.nextInt(8);
