@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.JFrame;
 import view.BattleInterface;
 import view.ImageCanvas;
-import view.NewJFrame;
+import view.BattleInterface;
 
 /**
  * @author paolo
@@ -21,7 +21,7 @@ public class ImageFrame extends JFrame {
     public static void main(String[] args) {
         //ImageFrame imageFrame = new ImageFrame();
 
-        NewJFrame bti = new NewJFrame();
+        BattleInterface bti = new BattleInterface();
         bti.setVisible(true);
 //imageFrame.setVisible(true);
     }
