@@ -112,53 +112,153 @@ public class PokemonRulesController {
                 }
                 if (attacked.getType().equals(DRAGON)) {//2* dragon
                     return 2;
-                }                
+                }
                 break;
             case GRASS:
-                //1/2 fir, poi, fly, bugdragon, steel
-                //2 watm gro, rock
+                if (attacked.getType().equals(FIRE)
+                        || attacked.getType().equals(POISON)
+                        || attacked.getType().equals(FLYING)
+                        || attacked.getType().equals(BUG)
+                        || attacked.getType().equals(DRAGON)
+                        || attacked.getType().equals(STEEL)) {//1/2 fir, poi, fly, bugdragon, steel
+                    return 0.5;
+                }
+                if (attacked.getType().equals(WATER)
+                        || attacked.getType().equals(GROUND)
+                        || attacked.getType().equals(ROCK)) {//2 watm gro, rock
+                    return 2;
+                }
                 break;
             case BUG:
-                //1/2 fire, fig, poi, fly, ghos, steel, fair
-                //2 grass, psy, dark
+                if (attacked.getType().equals(FIRE)
+                        || attacked.getType().equals(FIGTHING)
+                        || attacked.getType().equals(POISON)
+                        || attacked.getType().equals(FLYING)
+                        || attacked.getType().equals(GHOST)
+                        || attacked.getType().equals(STEEL)
+                        || attacked.getType().equals(FAIRY)) {//1/2 fire, fig, poi, fly, ghos, steel, fair
+                    return 0.5;
+                }
+                if (attacked.getType().equals(GRASS)
+                        || attacked.getType().equals(PSYCHIC)
+                        || attacked.getType().equals(DARK)) {//2 grass, psy, dark
+                    return 2;
+                }
                 break;
             case POISON:
-                //1/2 poi, grou, rock, ghost
-                //2, grass, fair
+                if (attacked.getType().equals(POISON)
+                        || attacked.getType().equals(GROUND)
+                        || attacked.getType().equals(ROCK)
+                        || attacked.getType().equals(GHOST)) {//1/2 poi, grou, rock, ghost
+                    return 0.5;
+                }
+                if (attacked.getType().equals(GRASS)
+                        || attacked.getType().equals(FAIRY)) {//2, grass, fair
+                    return 2;
+                }
                 break;
             case WATER:
-                //1/2 wat, grass, dra
-                //2 fire, ground, rock
+                if (attacked.getType().equals(WATER)
+                        || attacked.getType().equals(GRASS)
+                        || attacked.getType().equals(DRAGON)) {//1/2 wat, grass, dra
+                    return 0.5;
+                }
+                if (attacked.getType().equals(FIRE)
+                        || attacked.getType().equals(GROUND)
+                        || attacked.getType().equals(ROCK)) {//2 fire, ground, rock
+                    return 2;
+                }
                 break;
             case ICE:
-                //1/2 fire, water, ice, steel
-                //2 grass, ground, fly, dragon
+                if (attacked.getType().equals(FIRE)
+                        || attacked.getType().equals(WATER)
+                        || attacked.getType().equals(ICE)
+                        || attacked.getType().equals(STEEL)) {//1/2 fire, water, ice, steel
+                    return 0.5;
+                }
+                if (attacked.getType().equals(GRASS)
+                        || attacked.getType().equals(GROUND)
+                        || attacked.getType().equals(FLYING)
+                        || attacked.getType().equals(DRAGON)) {//2 grass, ground, fly, dragon
+                    return 2;
+                }
                 break;
             case FIRE:
-                //1/2 fire, water, rock, drag
-                //2 grass, ice, bug, steel
+                if (attacked.getType().equals(FIRE)
+                        || attacked.getType().equals(WATER)
+                        || attacked.getType().equals(ROCK)
+                        || attacked.getType().equals(DRAGON)) {//1/2 fire, water, rock, drag
+                    return 0.5;
+                }
+                if (attacked.getType().equals(GRASS)
+                        || attacked.getType().equals(ICE)
+                        || attacked.getType().equals(BUG)
+                        || attacked.getType().equals(STEEL)) {//2 grass, ice, bug, steel
+                    return 2;
+                }
                 break;
             case FAIRY:
-                //1/2 fire, pois, steel
-                //2 figt, dragon, dark
+                if (attacked.getType().equals(FIRE)
+                        || attacked.getType().equals(POISON)
+                        || attacked.getType().equals(STEEL)) {//1/2 fire, pois, steel
+                    return 0.5;
+                }
+                if (attacked.getType().equals(FIGTHING)
+                        || attacked.getType().equals(DRAGON)
+                        || attacked.getType().equals(DARK)) {//2 figt, dragon, dark
+                    return 2;
+                }
                 break;
             case PSYCHIC:
-                //0 dark
-                //1/2 psy, steel
-                //2 fightnin, posi
+                if (attacked.getType().equals(DARK)) {//0 dark
+                    return 0;
+                }
+                if (attacked.getType().equals(PSYCHIC)
+                        || attacked.getType().equals(STEEL)) {//1/2 psy, steel
+                    return 0.5;
+                }
+                if (attacked.getType().equals(FIGTHING)
+                        || attacked.getType().equals(POISON)) {//2 fightnin, posi
+                    return 2;
+                }
                 break;
             case ROCK:
-                //1/2 figthnin, ground, steel
-                //2 fire, ice, fly, bug
+                if (attacked.getType().equals(FIGTHING)
+                        || attacked.getType().equals(GROUND)
+                        || attacked.getType().equals(STEEL)) {//1/2 figthnin, ground, steel
+                    return 0.5;
+                }
+                if (attacked.getType().equals(FIRE)
+                        || attacked.getType().equals(ICE)
+                        || attacked.getType().equals(FLYING)
+                        || attacked.getType().equals(BUG)) {//2 fire, ice, fly, bug
+                    return 2;
+                }
                 break;
             case STEEL:
-                // 1/2 fire, water, electric, steel
-                //2 ice, rock, fair
-
+                if (attacked.getType().equals(FIRE)
+                        || attacked.getType().equals(WATER)
+                        || attacked.getType().equals(ELECTRIC)
+                        || attacked.getType().equals(STEEL)) {// 1/2 fire, water, electric, steel
+                    return 0.5;
+                }
+                if (attacked.getType().equals(ICE)
+                        || attacked.getType().equals(FAIRY)
+                        || attacked.getType().equals(ROCK)) {//2 ice, rock, fair
+                    return 2;
+                }
                 break;
             case FLYING:
-                //1/2 electric, rock, steel
-                //2 fighting, grass, bug
+                if (attacked.getType().equals(ELECTRIC)
+                        || attacked.getType().equals(ROCK)
+                        || attacked.getType().equals(STEEL)) {//1/2 electric, rock, steel
+                    return 0.5;
+                }
+                if (attacked.getType().equals(FIGTHING)
+                        || attacked.getType().equals(GRASS)
+                        || attacked.getType().equals(BUG)) {//2 fighting, grass, bug
+                    return 2;
+                }
                 break;
         }
         return 1;
