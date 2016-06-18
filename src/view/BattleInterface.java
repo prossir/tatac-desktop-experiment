@@ -1,26 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import controllers.BattleStateController;
 import java.awt.Color;
-import java.io.File;
-import javax.swing.ImageIcon;
+import java.util.List;
 import models.Pokemon;
 
-/**
- *
- * @author paolo
- */
+/** @author paolo */
 public class BattleInterface extends javax.swing.JFrame {
-
-    /**
-     * Creates new form NewJFrame
-     */
+    private List<Pokemon> playerTeam;
+    private List<Pokemon> enemyTeam;
+    
     public BattleInterface() {
+        initComponents();
+        loadBattle();
+    }
+
+    BattleInterface(List<Pokemon> playerTeam, List<Pokemon> computerTeam) {
         initComponents();
         loadBattle();
     }

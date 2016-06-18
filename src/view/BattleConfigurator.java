@@ -5,6 +5,11 @@
  */
 package view;
 
+import controllers.PokemonLoaderController;
+import java.util.ArrayList;
+import java.util.List;
+import models.Pokemon;
+
 /**
  *
  * @author paolo
@@ -66,8 +71,11 @@ public class BattleConfigurator extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_battleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_battleActionPerformed
-
-        BattleInterface battleInterface = new BattleInterface();
+        List<Pokemon> allPokemons = PokemonLoaderController.loadPokemon();
+        List<Pokemon> playerTeam = new ArrayList<>();
+        List<Pokemon> computerTeam = new ArrayList<>();
+        PokemonLoaderController.init(allPokemons, playerTeam, computerTeam, 6);
+        BattleInterface battleInterface = new BattleInterface(playerTeam, computerTeam);
         battleInterface.setVisible(true);
     }//GEN-LAST:event_b_battleActionPerformed
 
@@ -91,7 +99,7 @@ public class BattleConfigurator extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(BattleConfigurator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
