@@ -1,40 +1,28 @@
 package main;
 
 import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
+import javax.swing.JFrame;
+import view.BattleInterface;
 import view.ImageCanvas;
+import view.NewJFrame;
 
 /**
  * @author paolo
  */
-public class ImageFrame extends Frame {
+public class ImageFrame extends JFrame {
 
-    private ImageCanvas c;
-    private Image i;
+    ImageFrame() {
+        getContentPane().add(new ImageCanvas(this, null), BorderLayout.CENTER);
 
-    ImageFrame(Image i) {
-        this.i = i;
-        c = new ImageCanvas(i, this);
-        //add(c);
+        setSize(600, 600);
+        setDefaultCloseOperation(3);
     }
 
     public static void main(String[] args) {
-        Toolkit tk = Toolkit.getDefaultToolkit();
+        //ImageFrame imageFrame = new ImageFrame();
 
-        //Debug 1
-        File file = new File("assets/victini_player.png");
-        System.out.println("File exists: "
-                + file.exists());
-        Image im = tk.getImage("assets/victini_opponent.png");
-        ImageFrame f = new ImageFrame(im);
-        f.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-        });
-        f.setSize(300, 300);
-        f.show();
+        NewJFrame bti = new NewJFrame();
+        bti.setVisible(true);
+//imageFrame.setVisible(true);
     }
 }
