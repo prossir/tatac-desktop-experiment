@@ -1,0 +1,759 @@
+Aegislash
+60
+50
+150
+60
+Sacred Sword
+90
+100
+FIGHTING
+Night Slash
+70
+100
+DARK
+Giga Impact
+150
+90
+NORMAL
+Shadow Ball
+80
+100
+GHOST
+Hidden Power
+60
+100
+NORMAL
+Facade
+70
+100
+NORMAL
+Rock Smash
+40
+100
+FIGHTING
+Cut
+50
+95
+NORMAL
+
+Garchomp-Mega
+108
+170
+115
+92
+False Swipe
+40
+100
+NORMAL
+Dig
+80
+100
+GROUND
+Flash Cannon
+80
+100
+NORMAL
+Bulldoze
+60
+100
+GROUND
+Giga Impact
+150
+90
+NORMAL
+Earthquake
+100
+100
+GROUND
+Dragon Claw
+80
+100
+DRAGON
+Dragon Tail
+60
+90
+DRAGON
+
+Galvantula
+70
+77
+60
+108
+Energy Ball
+90
+100
+GRASS
+Hyper Beam
+150
+90
+NORMAL
+Volt Switch
+70
+100
+ELECTRIC
+Thunderbolt
+90
+100
+ELECTRIC
+X-Scissor
+80
+100
+BUG
+Bug Bite
+60
+100
+BUG
+Electroweb
+55
+95
+ELECTRIC
+Cross Poison
+70
+100
+POISON
+
+Frillish
+55
+40
+50
+40
+Brine
+65
+100
+WATER
+Hydro Pump
+110
+80
+WATER
+Facade
+70
+100
+NORMAL
+Scald
+80
+100
+WATER
+Sludge Bomb
+90
+100
+POISON
+Surf
+90
+100
+WATER
+Sludge Wave
+95
+100
+POISON
+Icy Wind
+55
+95
+ICE
+
+Victini
+100
+100
+100
+100
+Flare Blitz
+120
+100
+FIRE
+Dazzling Gleam
+80
+100
+FAIRY
+Facade
+70
+100
+NORMAL
+Fire Blast
+110
+85
+FIRE
+Power-Up Punch
+40
+100
+FIGHTING
+Incinerate
+60
+100
+FIRE
+Psychic
+90
+100
+PSYCHIC
+Snore
+50
+100
+NORMAL
+
+Blissey
+255
+10
+10
+55
+Blizzard
+110
+70
+ICE
+Echoed Voice
+40
+100
+NORMAL
+Flamethrower
+90
+100
+FIRE
+Retaliate
+70
+100
+NORMAL
+Covet
+60
+100
+NORMAL
+Icy Wind
+55
+95
+ICE
+Water Pulse
+60
+100
+WATER
+Mud Bomb
+65
+85
+GROUND
+
+Breloom
+60
+130
+80
+70
+Brick Break
+75
+100
+FIGHTING
+Focus Blast
+120
+70
+FIGHTING
+Low Sweep
+65
+100
+FIGHTING
+Power-Up Punch
+40
+100
+FIGHTING
+Rock Slide
+75
+90
+ROCK
+Rock Tomb
+60
+95
+ROCK
+Rock Smash
+40
+100
+FIGHTING
+Iron Tail
+100
+75
+STEEL
+
+Shuckle
+20
+10
+230
+5
+Earthquake
+100
+100
+GROUND
+Hidden Power
+60
+100
+NORMAL
+Sludge Bomb
+90
+100
+POISON
+Stone Edge
+100
+80
+ROCK
+Earth Power
+90
+100
+GROUND
+Double-Edge
+120
+100
+NORMAL
+Bug Bite
+60
+100
+BUG
+Venoshock
+65
+100
+POISON
+
+Slaking
+150
+160
+100
+100
+Slash
+70
+100
+NORMAL
+Brick Break
+75
+100
+FIGHTING
+Bulldoze
+60
+100
+GROUND
+Cut
+50
+95
+NORMAL
+Fire Blast
+110
+85
+FIRE
+Incinerate
+60
+100
+FIRE
+Thunder
+110
+70
+ELECTRIC
+Focus Punch
+150
+100
+FIGHTING
+
+Ninjask
+61
+90
+45
+160
+False Swipe
+40
+100
+NORMAL
+Cut
+50
+95
+NORMAL
+False Swipe
+40
+100
+NORMAL
+Facade
+70
+100
+NORMAL
+Hidden Power
+60
+100
+NORMAL
+Shadow Ball
+80
+100
+GHOST
+Struggle Bug
+50
+100
+BUG
+Round
+60
+100
+NORMAL
+
+Flareon
+65
+130
+60
+110
+Flame Charge
+50
+100
+FIRE
+Giga Impact
+150
+90
+NORMAL
+Retaliate
+70
+100
+NORMAL
+Secret Power
+70
+100
+NORMAL
+superpower
+120
+100
+FIGHTING
+Hyper Voice
+90
+100
+NORMAL
+Strength
+80
+100
+NORMAL
+Ember
+40
+100
+FIRE
+
+Alakazam
+55
+50
+45
+120
+Dream Eater
+100
+100
+PSYCHIC
+Dazzling Gleam
+80
+100
+FAIRY
+Psychic
+90
+100
+PSYCHIC
+Charge Beam
+50
+90
+ELECTRIC
+Energy Ball
+90
+100
+GRASS
+Psyshock
+80
+100
+PSYCHIC
+Round
+60
+100
+NORMAL
+Shadow Ball
+80
+100
+GHOST
+
+Snorlax
+160
+110
+65
+30
+Tackle
+50
+100
+NORMAL
+Body Stam
+85
+100
+NORMAL
+Snore
+50
+100
+NORMAL
+Rollout
+30
+90
+ROCK
+Giga Impact
+150
+90
+NORMAL
+Psychic
+90
+100
+PSYCHIC
+Rock Slide
+75
+90
+ROCK
+Rock Smash
+40
+100
+FIGHTING
+
+Jumpluff
+75
+55
+70
+110
+Acrobatics
+55
+100
+FLYING
+Dazzling Gleam
+80
+100
+FAIRY
+Energy Ball
+90
+100
+GRASS
+False Swipe
+40
+100
+NORMAL
+Secret Power
+70
+100
+NORMAL
+Hyper Beam
+150
+90
+NORMAL
+Giga Impact
+150
+90
+NORMAL
+Seed Bomb
+80
+100
+GRASS
+
+Lucario
+70
+110
+70
+90
+Dig
+80
+100
+GROUND
+Earthquake
+100
+100
+GROUND
+Giga Impact
+150
+90
+NORMAL
+Low Sweep
+65
+100
+FIGHTING
+Brick Break
+75
+100
+FIGHTING
+Payback
+50
+100
+DARK
+Rock Smash
+40
+100
+FIGHTING
+Poison Jab
+80
+100
+POISON
+
+Darkrai
+70
+90
+90
+125
+Secret Power
+70
+100
+NORMAL
+Focus Blast
+120
+70
+FIGHTING
+Poison Jab
+80
+100
+POISON
+Hidden Power
+60
+100
+NORMAL
+Drain Punch
+75
+100
+FIGHTING
+Last Resort
+140
+100
+NORMAL
+Phantom Force
+90
+100
+GHOST
+Snarl
+55
+95
+DARK
+
+Aggron-Mega
+70
+140
+230
+50
+Facade
+70
+100
+NORMAL
+Dark Pulse
+80
+100
+DARK
+Flamethrower
+90
+100
+FIRE
+Cut
+50
+95
+NORMAL
+Rock Slide
+75
+90
+ROCK
+Uproar
+90
+100
+NORMAL
+Outrage
+120
+100
+DRAGON
+Metal Claw
+50
+95
+STEEL
+
+Moltres
+90
+100
+90
+90
+Fire Blast
+110
+85
+FIRE
+Flame Charge
+50
+100
+FIRE
+Fly
+90
+95
+FLYING
+Giga Impact
+150
+90
+NORMAL
+Hidden Power
+60
+100
+NORMAL
+Hyper Beam
+150
+90
+NORMAL
+Incinerate
+60
+100
+FIRE
+Overheat
+130
+90
+FIRE
+
+Naviathan
+103
+110
+90
+97
+Blizzard
+110
+70
+ICE
+Facade
+70
+100
+NORMAL
+Giga Impact
+150
+90
+NORMAL
+Hidden Power
+60
+100
+NORMAL
+Ice Beam
+90
+100
+ICE
+Dive
+80
+100
+WATER
+Flash Cannon
+80
+100
+STEEL
+Waterfall
+80
+100
+WATER
+
+Porygon2
+85
+80
+90
+60
+Thunder
+110
+70
+ELECTRIC
+Foul Play
+95
+100
+DARK
+Psyshock
+80
+100
+PSYCHIC
+Solar Beam
+120
+100
+GRASS
+Thunderbolt
+90
+100
+ELECTRIC
+Thief
+60
+100
+DARK
+Round
+60
+100
+NORMAL
+Blizzard
+110
+70
+ICE

@@ -1,4 +1,4 @@
-package mechanics;
+package controllers;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,12 +14,12 @@ import models.Pokemon;
  *
  * @author paolo
  */
-public class MinMaxPokemonLoader {
+public class PokemonLoaderController {
     public static List<Pokemon> loadPokemon(){
         List<Pokemon> challengers =  new ArrayList<>();
         try{
             
-        File file = new File("input.txt");
+        File file = new File("pokemons.txt");
 	FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
 	StringBuilder stringBuffer = new StringBuilder();

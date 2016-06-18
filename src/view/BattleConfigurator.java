@@ -31,11 +31,15 @@ public class BattleConfigurator extends javax.swing.JFrame {
         b_battle = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(593, 492));
 
         b_training.setText("Train Computer");
 
         b_battle.setText("Battle");
+        b_battle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_battleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,6 +65,12 @@ public class BattleConfigurator extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void b_battleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_battleActionPerformed
+
+        BattleInterface battleInterface = new BattleInterface();
+        battleInterface.setVisible(true);
+    }//GEN-LAST:event_b_battleActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -77,22 +87,16 @@ public class BattleConfigurator extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BattleConfigurator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BattleConfigurator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BattleConfigurator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(BattleConfigurator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BattleConfigurator().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new BattleConfigurator().setVisible(true);
         });
     }
 
