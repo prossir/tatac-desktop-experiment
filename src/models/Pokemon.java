@@ -14,6 +14,7 @@ public class Pokemon {
     private int speed;
     private List<Move> moves;
     private List<Move> choosenMoves;
+    private String pokemonType;
 
     public Pokemon() {
 
@@ -152,6 +153,14 @@ public class Pokemon {
         this.totalHitPoints = totalHitPoints;
     }
 
+    public void setType(String pokemonType) {
+        this.pokemonType = pokemonType;
+    }
+
+    public String getType() {
+        return pokemonType;
+    }
+
     public boolean bestDamage(Pokemon p) {
         int maxDamage = -9999;
         //jugada del 0 al 3, el numero 4 es cambiar
@@ -166,10 +175,8 @@ public class Pokemon {
             p.setHitPoints(0);
             return true;
         }
-        
-        p.setHitPoints(p.getHitPoints()-maxDamage);
+
+        p.setHitPoints(p.getHitPoints() - maxDamage);
         return false;
     }
-
-
 }
