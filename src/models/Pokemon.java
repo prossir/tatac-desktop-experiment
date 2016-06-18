@@ -170,4 +170,6 @@ public class Pokemon {
         p.setHitPoints(p.getHitPoints()-maxDamage);
         return false;
     }
+
+
 }

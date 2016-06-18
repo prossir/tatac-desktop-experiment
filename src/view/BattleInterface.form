@@ -161,14 +161,13 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace pref="78" max="32767" attributes="0"/>
                   <Component id="l_image_player_pokemon" min="-2" pref="218" max="-2" attributes="0"/>
-                  <EmptySpace pref="98" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="l_pokemon_name" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="l_player_pokemon_status" min="-2" max="-2" attributes="0"/>
+                      <Component id="l_player_pokemon_name" min="-2" max="-2" attributes="0"/>
                       <Component id="pb_player_pokemon_life" min="-2" max="-2" attributes="0"/>
-                      <Component id="l_pokemon_life" min="-2" max="-2" attributes="0"/>
-                      <Component id="l_pokemon_status" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
               </Group>
@@ -178,21 +177,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="l_pokemon_name" min="-2" max="-2" attributes="0"/>
+                  <Component id="l_player_pokemon_name" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pb_player_pokemon_life" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="l_pokemon_life" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="l_pokemon_status" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="57" max="32767" attributes="0"/>
+                  <Component id="l_player_pokemon_status" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="80" max="32767" attributes="0"/>
               </Group>
               <Component id="l_image_player_pokemon" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="l_pokemon_name">
+        <Component class="javax.swing.JLabel" name="l_player_pokemon_name">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -204,15 +201,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="l_image_player_pokemon">
         </Component>
-        <Component class="javax.swing.JLabel" name="l_pokemon_life">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Pokemon Life / Total"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="l_pokemon_status">
+        <Component class="javax.swing.JLabel" name="l_player_pokemon_status">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -233,14 +222,15 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="pb_enemy_pokemon_life" min="-2" max="-2" attributes="0"/>
                       <Component id="l_enemy_pokemon_name" min="-2" pref="199" max="-2" attributes="0"/>
+                      <Component id="l_enemy_pokemon_status" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                   <Component id="l_image_enemy_pokemon" min="-2" pref="200" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -251,7 +241,9 @@
                   <Component id="l_enemy_pokemon_name" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="pb_enemy_pokemon_life" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="110" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="l_enemy_pokemon_status" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="87" max="32767" attributes="0"/>
               </Group>
               <Component id="l_image_enemy_pokemon" alignment="0" max="32767" attributes="0"/>
           </Group>
@@ -277,6 +269,14 @@
               <Connection code="new Color(0,225,0,0)" type="code"/>
             </Property>
             <Property name="opaque" type="boolean" value="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="l_enemy_pokemon_status">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Pokemon Status"/>
           </Properties>
         </Component>
       </SubComponents>
