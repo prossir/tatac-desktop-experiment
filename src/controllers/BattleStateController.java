@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.File;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -10,9 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import models.Pokemon;
 
-/**
- * @author paolo
- */
+/* @author paolo*/
 public class BattleStateController {
 
     public static void setPokemon(Pokemon pokemon, JLabel l_image_pokemon,
@@ -52,5 +49,13 @@ public class BattleStateController {
         for (Pokemon teamMember : playerTeam) {
             cb_change_pokemon.addItem(teamMember.getName());
         }
+    }
+
+    public static int enemyMove(List<Pokemon> enemyTeam, int currentEnemyPokemon, List<Pokemon> playerTeam, int currentPlayerPokemon) {
+        int chosenMove = 0;
+//        int chosenMove = generateMinMaxTree(enemyTeam, currentEnemyPokemon, playerTeam,
+//                currentPlayerPokemon);
+
+        return chosenMove;
     }
 }

@@ -234,17 +234,7 @@ public class BattleInterface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_move1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_move1ActionPerformed
-        int damage = playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
-                0);
-
-        BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
-                l_image_enemy_pokemon, pb_enemy_pokemon_life,
-                l_enemy_pokemon_name, l_enemy_pokemon_status,
-                0, null, null, null, null);
-
-                l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
-                + " ha hecho " + damage
-                + "de danho, con " + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(0).getName());
+        executeTurnAndResponse(0);
     }//GEN-LAST:event_b_move1ActionPerformed
 
     private void cb_change_pokemonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_change_pokemonActionPerformed
@@ -257,45 +247,15 @@ public class BattleInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_change_pokemonActionPerformed
 
     private void b_move2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_move2ActionPerformed
-        int damage = playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
-                1);
-
-        BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
-                l_image_enemy_pokemon, pb_enemy_pokemon_life,
-                l_enemy_pokemon_name, l_enemy_pokemon_status,
-                0, null, null, null, null);
-
-        l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
-                + " ha hecho " + damage
-                + "de danho, con " + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(1).getName());
+        executeTurnAndResponse(1);
     }//GEN-LAST:event_b_move2ActionPerformed
 
     private void b_move3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_move3ActionPerformed
-        int damage = playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
-                2);
-
-        BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
-                l_image_enemy_pokemon, pb_enemy_pokemon_life,
-                l_enemy_pokemon_name, l_enemy_pokemon_status,
-                0, null, null, null, null);
-
-        l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
-                + " ha hecho " + damage
-                + "de danho, con " + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(2).getName());
+        executeTurnAndResponse(2);
     }//GEN-LAST:event_b_move3ActionPerformed
 
     private void b_move4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_move4ActionPerformed
-        int damage = playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
-                3);
-
-        BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
-                l_image_enemy_pokemon, pb_enemy_pokemon_life,
-                l_enemy_pokemon_name, l_enemy_pokemon_status,
-                0, null, null, null, null);
-
-        l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
-                + " ha hecho " + damage
-                + "de danho, con " + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(3).getName());
+        executeTurnAndResponse(3);
     }//GEN-LAST:event_b_move4ActionPerformed
 
     /**
@@ -354,15 +314,56 @@ public class BattleInterface extends javax.swing.JFrame {
                 pb_player_pokemon_life, l_player_pokemon_name, l_player_pokemon_status,
                 1, b_move1, b_move2, b_move3, b_move4);
 
+        //Enemy turn
         if (enemyTeam.get(0).getSpeed() > playerTeam.get(0).getSpeed()) {
             //Calculates next best MINIMAX move
-            //generateMinMaxTree(enemyTeam, currentEnemyPokemon, playerTeam, 
-            //        currentPlayerPokemon);
+
+            int moveChoosen = BattleStateController.enemyMove(enemyTeam, currentEnemyPokemon, playerTeam,
+                    currentPlayerPokemon);
+
+            int damage = enemyTeam.get(0).damage(playerTeam.get(currentPlayerPokemon),
+                    moveChoosen);
+
+            BattleStateController.setPokemon(playerTeam.get(0), l_image_player_pokemon,
+                    pb_player_pokemon_life, l_player_pokemon_name, l_player_pokemon_status,
+                    1, b_move1, b_move2, b_move3, b_move4);
 
             l_announcement.setText("El " + enemyTeam.get(0).getName()
                     + " enemigo ha hecho "
-                    /*cantidad de danho*/
-                    + "de danho, con " +/*movimiento enemigo*/ " ");
+                    + damage
+                    + "de danho, con "
+                    + enemyTeam.get(0).getChosenMoves().get(moveChoosen));
         }
+    }
+
+    private void executeTurnAndResponse(int chosenMove) {
+        int damage = playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
+                chosenMove);
+
+        BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
+                l_image_enemy_pokemon, pb_enemy_pokemon_life,
+                l_enemy_pokemon_name, l_enemy_pokemon_status,
+                0, null, null, null, null);
+
+        l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
+                + " ha hecho " + damage
+                + "de danho, con " + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(chosenMove).getName());
+
+        //Calculates next best MINIMAX move of enemy 
+        int moveChoosen = BattleStateController.enemyMove(enemyTeam, currentEnemyPokemon, playerTeam,
+                currentPlayerPokemon);
+
+        damage = enemyTeam.get(0).damage(playerTeam.get(currentPlayerPokemon),
+                moveChoosen);
+
+        BattleStateController.setPokemon(playerTeam.get(currentPlayerPokemon), l_image_player_pokemon,
+                pb_player_pokemon_life, l_player_pokemon_name, l_player_pokemon_status,
+                1, b_move1, b_move2, b_move3, b_move4);
+
+        l_announcement.setText("El " + enemyTeam.get(currentEnemyPokemon).getName()
+                + " enemigo ha hecho "
+                + damage
+                + "de danho, con "
+                + enemyTeam.get(0).getChosenMoves().get(moveChoosen).getName());
     }
 }
