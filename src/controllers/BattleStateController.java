@@ -53,9 +53,7 @@ public class BattleStateController {
 
     public static int enemyMove(List<Pokemon> enemyTeam, int currentEnemyPokemon, List<Pokemon> playerTeam, int currentPlayerPokemon) {
         int chosenMove = 0;
-//        int chosenMove = generateMinMaxTree(enemyTeam, currentEnemyPokemon, playerTeam,
-//                currentPlayerPokemon);
-
+        //int chosenMove = generateMinMaxTree(enemyTeam, currentEnemyPokemon, playerTeam, currentPlayerPokemon);
         return chosenMove;
     }
 }

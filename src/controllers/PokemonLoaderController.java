@@ -62,12 +62,12 @@ public class PokemonLoaderController {
     }
 
     public static void init(List<Pokemon> pokemones, List<Pokemon> teamA,
-            List<Pokemon> teamB, int max) {
+            List<Pokemon> teamB, int max, int numberOfPokemonsOnDatabase) {
 
         for (int i = 0; i < max; i++) {
             Random ran = new Random();
-            int a = ran.nextInt(max);
-            int b = ran.nextInt(max);
+            int a = ran.nextInt(numberOfPokemonsOnDatabase);
+            int b = ran.nextInt(numberOfPokemonsOnDatabase);
             Pokemon pa = new Pokemon(pokemones.get(a));
             choosePowers(pa);
             Pokemon pb = new Pokemon(pokemones.get(b));

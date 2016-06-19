@@ -353,17 +353,22 @@ public class BattleInterface extends javax.swing.JFrame {
         int moveChoosen = BattleStateController.enemyMove(enemyTeam, currentEnemyPokemon, playerTeam,
                 currentPlayerPokemon);
 
-        damage = enemyTeam.get(0).damage(playerTeam.get(currentPlayerPokemon),
-                moveChoosen);
+        if (moveChoosen > -1) {
 
-        BattleStateController.setPokemon(playerTeam.get(currentPlayerPokemon), l_image_player_pokemon,
-                pb_player_pokemon_life, l_player_pokemon_name, l_player_pokemon_status,
-                1, b_move1, b_move2, b_move3, b_move4);
+            damage = enemyTeam.get(0).damage(playerTeam.get(currentPlayerPokemon),
+                    moveChoosen);
 
-        l_announcement.setText("El " + enemyTeam.get(currentEnemyPokemon).getName()
-                + " enemigo ha hecho "
-                + damage
-                + "de danho, con "
-                + enemyTeam.get(0).getChosenMoves().get(moveChoosen).getName());
+            BattleStateController.setPokemon(playerTeam.get(currentPlayerPokemon), l_image_player_pokemon,
+                    pb_player_pokemon_life, l_player_pokemon_name, l_player_pokemon_status,
+                    1, b_move1, b_move2, b_move3, b_move4);
+
+            l_announcement.setText("El " + enemyTeam.get(currentEnemyPokemon).getName()
+                    + " enemigo ha hecho "
+                    + damage
+                    + "de danho, con "
+                    + enemyTeam.get(0).getChosenMoves().get(moveChoosen).getName());
+        }else{// -1 -> 0; -2 -> 1 ...
+            
+        }
     }
 }
