@@ -1,4 +1,4 @@
-package mechanics;
+package mechanics.legacy;
 
 import java.util.List;
 import models.MinMaxBattleNode;

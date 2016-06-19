@@ -9,6 +9,6 @@ package mechanics;
  *
  * @author paolo
  */
-public class MiniMaxSecondHeuristic {
+public class FirstHeuristic {
     
 }

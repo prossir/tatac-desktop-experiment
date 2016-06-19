@@ -7,6 +7,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
+import mechanics.MinMaxAlgorithm;
+import models.MinMaxBattleNode;
 import models.Pokemon;
 
 /* @author paolo*/
@@ -51,9 +53,12 @@ public class BattleStateController {
         }
     }
 
-    public static int enemyMove(List<Pokemon> enemyTeam, int currentEnemyPokemon, List<Pokemon> playerTeam, int currentPlayerPokemon) {
-        int chosenMove = 0;
-        //int chosenMove = generateMinMaxTree(enemyTeam, currentEnemyPokemon, playerTeam, currentPlayerPokemon);
+    public static int enemyMove(List<Pokemon> enemyTeam, int currentEnemyPokemon,
+            List<Pokemon> playerTeam, int currentPlayerPokemon) {
+        int chosenMove = 0;        
+        MinMaxBattleNode root = MinMaxAlgorithm.generateMinMaxTree(enemyTeam, currentEnemyPokemon,
+                playerTeam, currentPlayerPokemon, 0, 0);
+        chosenMove = MinMaxAlgorithm.findInTree(root);
         return chosenMove;
     }
 }
