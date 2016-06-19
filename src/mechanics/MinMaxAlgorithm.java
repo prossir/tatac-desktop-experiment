@@ -1,5 +1,6 @@
 package mechanics;
 
+import java.util.ArrayList;
 import java.util.List;
 import models.MinMaxBattleNode;
 import models.Pokemon;
@@ -14,7 +15,7 @@ public class MinMaxAlgorithm {
     //Team A is max, Team B is min
     public static MinMaxBattleNode generateMinMaxTree(List<Pokemon> teamA, int currentA,
             List<Pokemon> teamB, int currentB, int teamPlaying, int level) {
-        if (level < 4) {
+        if (level < 5) {
             MinMaxBattleNode head = new MinMaxBattleNode();
             head.setTeamA(teamA);
             head.setTeamB(teamB);
