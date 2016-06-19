@@ -37,11 +37,11 @@ public class BattleInterface extends javax.swing.JFrame {
     private void initComponents() {
 
         p_battle_menu = new javax.swing.JPanel();
-        b_change_pokemon = new javax.swing.JButton();
         b_move1 = new javax.swing.JButton();
         b_move2 = new javax.swing.JButton();
         b_move3 = new javax.swing.JButton();
         b_move4 = new javax.swing.JButton();
+        cb_change_pokemon = new javax.swing.JComboBox<>();
         p_player_pokemon = new javax.swing.JPanel();
         l_player_pokemon_name = new javax.swing.JLabel();
         pb_player_pokemon_life = new javax.swing.JProgressBar();
@@ -60,8 +60,6 @@ public class BattleInterface extends javax.swing.JFrame {
         p_battle_menu.setForeground(new java.awt.Color(255, 255, 255));
         p_battle_menu.setOpaque(false);
 
-        b_change_pokemon.setText("Change Pokemon");
-
         b_move1.setText("Move 1");
         b_move1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,13 +68,16 @@ public class BattleInterface extends javax.swing.JFrame {
         });
 
         b_move2.setText("Move 2");
-        b_move2.setActionCommand("Move 2");
 
         b_move3.setText("Move 3");
-        b_move3.setActionCommand("Move 3");
 
         b_move4.setText("Move 4");
-        b_move4.setActionCommand("Move 4");
+
+        cb_change_pokemon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_change_pokemonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout p_battle_menuLayout = new javax.swing.GroupLayout(p_battle_menu);
         p_battle_menu.setLayout(p_battle_menuLayout);
@@ -85,15 +86,15 @@ public class BattleInterface extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p_battle_menuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(p_battle_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(b_move1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(b_move1, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                     .addComponent(b_move2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(p_battle_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(b_move4, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                     .addComponent(b_move3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(31, 31, 31)
-                .addComponent(b_change_pokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+                .addGap(33, 33, 33)
+                .addComponent(cb_change_pokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         p_battle_menuLayout.setVerticalGroup(
             p_battle_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,8 +103,8 @@ public class BattleInterface extends javax.swing.JFrame {
                 .addGroup(p_battle_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_move1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_move3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_change_pokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
+                    .addComponent(cb_change_pokemon))
+                .addGap(6, 6, 6)
                 .addGroup(p_battle_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_move2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_move4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -217,6 +218,15 @@ public class BattleInterface extends javax.swing.JFrame {
                 0, null, null, null, null);
     }//GEN-LAST:event_b_move1ActionPerformed
 
+    private void cb_change_pokemonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_change_pokemonActionPerformed
+        int selectedPokemon = cb_change_pokemon.getSelectedIndex();
+        currentPlayerPokemon = selectedPokemon;
+        BattleStateController.setPokemon(playerTeam.get(currentPlayerPokemon), 
+                l_image_player_pokemon, pb_player_pokemon_life, 
+                l_player_pokemon_name, l_player_pokemon_status,
+                1, b_move1, b_move2, b_move3, b_move4);
+    }//GEN-LAST:event_cb_change_pokemonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,11 +253,11 @@ public class BattleInterface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton b_change_pokemon;
     private javax.swing.JButton b_move1;
     private javax.swing.JButton b_move2;
     private javax.swing.JButton b_move3;
     private javax.swing.JButton b_move4;
+    private javax.swing.JComboBox<String> cb_change_pokemon;
     private javax.swing.JLabel l_enemy_pokemon_name;
     private javax.swing.JLabel l_enemy_pokemon_status;
     private javax.swing.JLabel l_image_enemy_pokemon;
@@ -262,6 +272,8 @@ public class BattleInterface extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void loadBattle() {
+        BattleStateController.setChangeablePokemon(playerTeam, cb_change_pokemon);
+        
         BattleStateController.setPokemon(enemyTeam.get(0), l_image_enemy_pokemon,
                 pb_enemy_pokemon_life, l_enemy_pokemon_name, l_enemy_pokemon_status,
                 0, null, null, null, null);
@@ -269,7 +281,7 @@ public class BattleInterface extends javax.swing.JFrame {
         BattleStateController.setPokemon(playerTeam.get(0), l_image_player_pokemon,
                 pb_player_pokemon_life, l_player_pokemon_name, l_player_pokemon_status,
                 1, b_move1, b_move2, b_move3, b_move4);
-
+        
         if (enemyTeam.get(0).getSpeed() > playerTeam.get(0).getSpeed()) {
             //Calculates next best MINIMAX move
 

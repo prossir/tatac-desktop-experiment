@@ -62,7 +62,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="b_move1" max="32767" attributes="0"/>
+                      <Component id="b_move1" pref="168" max="32767" attributes="0"/>
                       <Component id="b_move2" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -70,9 +70,9 @@
                       <Component id="b_move4" pref="178" max="32767" attributes="0"/>
                       <Component id="b_move3" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="b_change_pokemon" min="-2" pref="175" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="cb_change_pokemon" min="-2" pref="175" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -83,9 +83,9 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="b_move1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="b_move3" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="b_change_pokemon" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="cb_change_pokemon" alignment="3" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="b_move2" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="b_move4" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
@@ -96,11 +96,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="b_change_pokemon">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Change Pokemon"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="b_move1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Move 1"/>
@@ -112,20 +107,30 @@
         <Component class="javax.swing.JButton" name="b_move2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Move 2"/>
-            <Property name="actionCommand" type="java.lang.String" value="Move 2"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="b_move3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Move 3"/>
-            <Property name="actionCommand" type="java.lang.String" value="Move 3"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="b_move4">
           <Properties>
             <Property name="text" type="java.lang.String" value="Move 4"/>
-            <Property name="actionCommand" type="java.lang.String" value="Move 4"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cb_change_pokemon">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_change_pokemonActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

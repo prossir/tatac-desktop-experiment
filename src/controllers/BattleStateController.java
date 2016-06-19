@@ -1,8 +1,11 @@
 package controllers;
 
 import java.io.File;
+import java.util.Iterator;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import models.Pokemon;
@@ -35,7 +38,7 @@ public class BattleStateController {
         pb_pokemon_life.setStringPainted(true);
         pb_pokemon_life.setMaximum(pokemon.getTotalHitPoints());
         pb_pokemon_life.setMinimum(0);
-        int currentKillStatus=pokemon.getHitPoints()<0?0:pokemon.getHitPoints();
+        int currentKillStatus = pokemon.getHitPoints() < 0 ? 0 : pokemon.getHitPoints();
         pb_pokemon_life.setValue(currentKillStatus);
         pb_pokemon_life.setString(currentKillStatus + "/"
                 + pokemon.getTotalHitPoints());
@@ -43,5 +46,11 @@ public class BattleStateController {
         l_pokemon_name.setText(pokemon.getName());
 
         l_pokemon_status.setText("");
+    }
+
+    public static void setChangeablePokemon(List<Pokemon> playerTeam, JComboBox<String> cb_change_pokemon) {
+        for (Pokemon teamMember : playerTeam) {
+            cb_change_pokemon.addItem(teamMember.getName());
+        }
     }
 }
