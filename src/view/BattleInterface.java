@@ -12,6 +12,8 @@ public class BattleInterface extends javax.swing.JFrame {
 
     private List<Pokemon> playerTeam;
     private List<Pokemon> enemyTeam;
+    private int currentPlayerPokemon;
+    private int currentEnemyPokemon;
 
     public BattleInterface() {
         initComponents();
@@ -35,11 +37,11 @@ public class BattleInterface extends javax.swing.JFrame {
     private void initComponents() {
 
         p_battle_menu = new javax.swing.JPanel();
-        l_move_1 = new javax.swing.JLabel();
-        l_move_3 = new javax.swing.JLabel();
-        l_move_4 = new javax.swing.JLabel();
         b_change_pokemon = new javax.swing.JButton();
-        l_move_2 = new javax.swing.JLabel();
+        b_move1 = new javax.swing.JButton();
+        b_move2 = new javax.swing.JButton();
+        b_move3 = new javax.swing.JButton();
+        b_move4 = new javax.swing.JButton();
         p_player_pokemon = new javax.swing.JPanel();
         l_player_pokemon_name = new javax.swing.JLabel();
         pb_player_pokemon_life = new javax.swing.JProgressBar();
@@ -58,53 +60,54 @@ public class BattleInterface extends javax.swing.JFrame {
         p_battle_menu.setForeground(new java.awt.Color(255, 255, 255));
         p_battle_menu.setOpaque(false);
 
-        l_move_1.setBackground(new java.awt.Color(221, 198, 175));
-        l_move_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        l_move_1.setText("Move 1");
-        l_move_1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        l_move_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        l_move_3.setText("Move 3");
-        l_move_3.setToolTipText("");
-        l_move_3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        l_move_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        l_move_4.setText("Move 4");
-        l_move_4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
         b_change_pokemon.setText("Change Pokemon");
 
-        l_move_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        l_move_2.setText("Move 2");
-        l_move_2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        b_move1.setText("Move 1");
+        b_move1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_move1ActionPerformed(evt);
+            }
+        });
+
+        b_move2.setText("Move 2");
+        b_move2.setActionCommand("Move 2");
+
+        b_move3.setText("Move 3");
+        b_move3.setActionCommand("Move 3");
+
+        b_move4.setText("Move 4");
+        b_move4.setActionCommand("Move 4");
 
         javax.swing.GroupLayout p_battle_menuLayout = new javax.swing.GroupLayout(p_battle_menu);
         p_battle_menu.setLayout(p_battle_menuLayout);
         p_battle_menuLayout.setHorizontalGroup(
             p_battle_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p_battle_menuLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(p_battle_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(l_move_1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(l_move_3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(p_battle_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(l_move_4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(l_move_2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(b_change_pokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_move1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(b_move2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(p_battle_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(b_move4, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                    .addComponent(b_move3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(b_change_pokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
         p_battle_menuLayout.setVerticalGroup(
             p_battle_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(p_battle_menuLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(p_battle_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(l_move_1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(b_change_pokemon)
-                    .addComponent(l_move_2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
-                .addGroup(p_battle_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(l_move_3, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                    .addComponent(l_move_4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(b_move1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_move3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_change_pokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(p_battle_menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(b_move2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_move4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         p_player_pokemon.setBackground(new java.awt.Color(0, 0, 0));
@@ -197,11 +200,22 @@ public class BattleInterface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(p_player_pokemon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(p_battle_menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(p_battle_menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void b_move1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_move1ActionPerformed
+        playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
+                0);
+
+        BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
+                l_image_enemy_pokemon, pb_enemy_pokemon_life, 
+                l_enemy_pokemon_name, l_enemy_pokemon_status,
+                0, null, null, null, null);
+    }//GEN-LAST:event_b_move1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,14 +244,14 @@ public class BattleInterface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_change_pokemon;
+    private javax.swing.JButton b_move1;
+    private javax.swing.JButton b_move2;
+    private javax.swing.JButton b_move3;
+    private javax.swing.JButton b_move4;
     private javax.swing.JLabel l_enemy_pokemon_name;
     private javax.swing.JLabel l_enemy_pokemon_status;
     private javax.swing.JLabel l_image_enemy_pokemon;
     private javax.swing.JLabel l_image_player_pokemon;
-    private javax.swing.JLabel l_move_1;
-    private javax.swing.JLabel l_move_2;
-    private javax.swing.JLabel l_move_3;
-    private javax.swing.JLabel l_move_4;
     private javax.swing.JLabel l_player_pokemon_name;
     private javax.swing.JLabel l_player_pokemon_status;
     private javax.swing.JPanel p_battle_menu;
@@ -248,13 +262,13 @@ public class BattleInterface extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void loadBattle() {
-        BattleStateController.setPokemon(playerTeam.get(0), l_image_enemy_pokemon,
-                pb_enemy_pokemon_life, l_enemy_pokemon_name, l_enemy_pokemon_status, 
+        BattleStateController.setPokemon(enemyTeam.get(0), l_image_enemy_pokemon,
+                pb_enemy_pokemon_life, l_enemy_pokemon_name, l_enemy_pokemon_status,
                 0, null, null, null, null);
 
-        BattleStateController.setPokemon(enemyTeam.get(0), l_image_player_pokemon,
+        BattleStateController.setPokemon(playerTeam.get(0), l_image_player_pokemon,
                 pb_player_pokemon_life, l_player_pokemon_name, l_player_pokemon_status,
-                1, l_move_1, l_move_2, l_move_3, l_move_4);
+                1, b_move1, b_move2, b_move3, b_move4);
 
         if (enemyTeam.get(0).getSpeed() > playerTeam.get(0).getSpeed()) {
             //Calculates next best MINIMAX move

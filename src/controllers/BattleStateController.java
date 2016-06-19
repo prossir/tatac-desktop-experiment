@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.File;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import models.Pokemon;
@@ -13,8 +14,8 @@ public class BattleStateController {
 
     public static void setPokemon(Pokemon pokemon, JLabel l_image_pokemon,
             JProgressBar pb_pokemon_life, JLabel l_pokemon_name,
-            JLabel l_pokemon_status, int player, JLabel l_move_1,
-            JLabel l_move_2, JLabel l_move_3, JLabel l_move_4) {
+            JLabel l_pokemon_status, int player, JButton l_move_1,
+            JButton l_move_2, JButton l_move_3, JButton l_move_4) {
         String trainerType;
 
         if (player == 0) {
@@ -34,8 +35,9 @@ public class BattleStateController {
         pb_pokemon_life.setStringPainted(true);
         pb_pokemon_life.setMaximum(pokemon.getTotalHitPoints());
         pb_pokemon_life.setMinimum(0);
-        pb_pokemon_life.setValue(pokemon.getHitPoints());
-        pb_pokemon_life.setString(pokemon.getHitPoints() + "/"
+        int currentKillStatus=pokemon.getHitPoints()<0?0:pokemon.getHitPoints();
+        pb_pokemon_life.setValue(currentKillStatus);
+        pb_pokemon_life.setString(currentKillStatus + "/"
                 + pokemon.getTotalHitPoints());
 
         l_pokemon_name.setText(pokemon.getName());

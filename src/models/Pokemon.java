@@ -127,6 +127,7 @@ public class Pokemon {
     public int damage(Pokemon pokemon, int moveNumber) {
         int damage = (int) ((this.attack / (pokemon.getDefense() + pokemon.getSpeed() * 0.1))
                 * moves.get(moveNumber).getBasePower());
+        pokemon.setHitPoints(pokemon.getHitPoints() - damage);
         return damage;
     }
 
