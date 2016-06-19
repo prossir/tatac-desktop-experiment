@@ -52,6 +52,7 @@ public class BattleInterface extends javax.swing.JFrame {
         pb_enemy_pokemon_life = new javax.swing.JProgressBar();
         l_image_enemy_pokemon = new javax.swing.JLabel();
         l_enemy_pokemon_status = new javax.swing.JLabel();
+        l_announcement = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -201,6 +202,9 @@ public class BattleInterface extends javax.swing.JFrame {
             .addComponent(l_image_enemy_pokemon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        l_announcement.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        l_announcement.setText("Announcements");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -208,11 +212,17 @@ public class BattleInterface extends javax.swing.JFrame {
             .addComponent(p_enemy_pokemon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(p_battle_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(p_player_pokemon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(l_announcement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(p_enemy_pokemon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(l_announcement)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(p_player_pokemon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -224,18 +234,22 @@ public class BattleInterface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_move1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_move1ActionPerformed
-        playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
+        int damage = playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
                 0);
 
         BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
                 l_image_enemy_pokemon, pb_enemy_pokemon_life,
                 l_enemy_pokemon_name, l_enemy_pokemon_status,
                 0, null, null, null, null);
+
+                l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
+                + " ha hecho " + damage
+                + "de danho, con " + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(0).getName());
     }//GEN-LAST:event_b_move1ActionPerformed
 
     private void cb_change_pokemonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_change_pokemonActionPerformed
         int selectedPokemon = cb_change_pokemon.getSelectedIndex();
-        currentPlayerPokemon = selectedPokemon;
+        int damage = currentPlayerPokemon = selectedPokemon;
         BattleStateController.setPokemon(playerTeam.get(currentPlayerPokemon),
                 l_image_player_pokemon, pb_player_pokemon_life,
                 l_player_pokemon_name, l_player_pokemon_status,
@@ -243,17 +257,21 @@ public class BattleInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_change_pokemonActionPerformed
 
     private void b_move2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_move2ActionPerformed
-        playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
+        int damage = playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
                 1);
 
         BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
                 l_image_enemy_pokemon, pb_enemy_pokemon_life,
                 l_enemy_pokemon_name, l_enemy_pokemon_status,
                 0, null, null, null, null);
+
+        l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
+                + " ha hecho " + damage
+                + "de danho, con " + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(1).getName());
     }//GEN-LAST:event_b_move2ActionPerformed
 
     private void b_move3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_move3ActionPerformed
-        playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
+        int damage = playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
                 2);
 
         BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
@@ -261,16 +279,23 @@ public class BattleInterface extends javax.swing.JFrame {
                 l_enemy_pokemon_name, l_enemy_pokemon_status,
                 0, null, null, null, null);
 
+        l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
+                + " ha hecho " + damage
+                + "de danho, con " + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(2).getName());
     }//GEN-LAST:event_b_move3ActionPerformed
 
     private void b_move4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_move4ActionPerformed
-        playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
+        int damage = playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
                 3);
 
         BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
                 l_image_enemy_pokemon, pb_enemy_pokemon_life,
                 l_enemy_pokemon_name, l_enemy_pokemon_status,
                 0, null, null, null, null);
+
+        l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
+                + " ha hecho " + damage
+                + "de danho, con " + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(3).getName());
     }//GEN-LAST:event_b_move4ActionPerformed
 
     /**
@@ -304,6 +329,7 @@ public class BattleInterface extends javax.swing.JFrame {
     private javax.swing.JButton b_move3;
     private javax.swing.JButton b_move4;
     private javax.swing.JComboBox<String> cb_change_pokemon;
+    private javax.swing.JLabel l_announcement;
     private javax.swing.JLabel l_enemy_pokemon_name;
     private javax.swing.JLabel l_enemy_pokemon_status;
     private javax.swing.JLabel l_image_enemy_pokemon;
@@ -332,6 +358,11 @@ public class BattleInterface extends javax.swing.JFrame {
             //Calculates next best MINIMAX move
             //generateMinMaxTree(enemyTeam, currentEnemyPokemon, playerTeam, 
             //        currentPlayerPokemon);
+
+            l_announcement.setText("El " + enemyTeam.get(0).getName()
+                    + " enemigo ha hecho "
+                    /*cantidad de danho*/
+                    + "de danho, con " +/*movimiento enemigo*/ " ");
         }
     }
 }
