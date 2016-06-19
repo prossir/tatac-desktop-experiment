@@ -21,7 +21,7 @@ public class MinMaxAlgorithm {
             head.setTeamB(teamB);
             //3 states: best movement  and change and already dead change 
             boolean killed;
-            if (teamPlaying % 2 == 0) {
+            if (teamPlaying == 0 || teamPlaying % 2 == 0) {
                 if (teamA.get(currentA).getHitPoints() <= 0) {//current member is dead
                     for (int i = 0; i < teamA.size(); i++) {
                         if (i != currentA && teamA.get(i).getHitPoints() != 0) {
@@ -121,15 +121,20 @@ public class MinMaxAlgorithm {
     }
 
     public static int findInTree(MinMaxBattleNode root) {
-        int chosenMove = 5;
+        int chosenMove;
         maxValuation = 0;
         MinMaxBattleNode cursor = root;
         for (int i = 0; i < cursor.getChildNodes().size(); i++) {
             nexPossibleMove(cursor.getChildNodes().get(i));
         }
         maxValuation = 0;
-        //encontramos la raiz y el hijo con el movimiento elegido
-        while (lastNode.getParentNode()!= null && lastNode.getParentNode().getParentNode() != null) {
+        if (lastNode.getParentNode().sameState(root)) {
+            return -4;
+        }
+
+        //encontramos la raiz y el hijo con el movimiento elegido si el hijo y la
+        //raiz son iguales, la partida termina
+        while (lastNode.getParentNode() != null && lastNode.getParentNode().getParentNode() != null) {
             lastNode = lastNode.getParentNode();
         }
         return lastNode.getChosenMove();

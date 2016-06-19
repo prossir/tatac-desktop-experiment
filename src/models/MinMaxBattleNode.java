@@ -7,15 +7,17 @@ import java.util.List;
  * @author paolo
  */
 public class MinMaxBattleNode {
+
     private List<Pokemon> teamA;
     private List<Pokemon> teamB;
     private List<MinMaxBattleNode> childNodes;
     private MinMaxBattleNode parentNode;
     private int chosenMove;
 
-    public MinMaxBattleNode(){
+    public MinMaxBattleNode() {
         childNodes = new ArrayList<>();
     }
+
     /**
      * @return the teamA
      */
@@ -74,7 +76,7 @@ public class MinMaxBattleNode {
 
     private List<Pokemon> copyList(List<Pokemon> teamB) {
         List<Pokemon> copyList = new ArrayList<>();
-        for (int i=0; i<teamB.size(); i++){
+        for (int i = 0; i < teamB.size(); i++) {
             Pokemon p = new Pokemon(teamB.get(i));
             copyList.add(p);
         }
@@ -84,8 +86,22 @@ public class MinMaxBattleNode {
     public void setChosenMove(int chosenMove) {
         this.chosenMove = chosenMove;
     }
-    
+
     public int getChosenMove() {
         return chosenMove;
+    }
+
+    public boolean sameState(MinMaxBattleNode root) {
+        boolean a = (getChildNodes().isEmpty()) && (root.getChildNodes().isEmpty())
+                && root.getChosenMove() == getChosenMove();
+        if (a) {
+            for (int i = 0; i < 3; i++) {
+                if (getTeamA().get(i).getHitPoints() != root.getTeamA().get(i).getHitPoints()
+                        || getTeamB().get(i).getHitPoints() != root.getTeamB().get(i).getHitPoints()) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

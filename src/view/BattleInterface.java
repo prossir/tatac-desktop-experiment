@@ -23,6 +23,8 @@ public class BattleInterface extends javax.swing.JFrame {
     public BattleInterface(List<Pokemon> playerTeam, List<Pokemon> computerTeam) {
         this.playerTeam = playerTeam;
         this.enemyTeam = computerTeam;
+        currentEnemyPokemon = 0;
+        currentPlayerPokemon = 0;
         initComponents();
         loadBattle();
     }
@@ -410,6 +412,11 @@ public class BattleInterface extends javax.swing.JFrame {
             }
 
         } else {// -1 -> 0; -2 -> 1 ...
+            if(moveChoosen == -4){
+                l_announcement.setText("Fin de la partida");
+                return;
+            }
+            
             switch (moveChoosen) {
                 case -1:
                     moveChoosen = 0;

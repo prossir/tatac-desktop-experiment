@@ -57,7 +57,8 @@ public class BattleStateController {
     public static int enemyMove(List<Pokemon> enemyTeam, int currentEnemyPokemon,
             List<Pokemon> playerTeam, int currentPlayerPokemon) {
         int chosenMove = 0;        
-        MinMaxBattleNode root = MinMaxAlgorithm.generateMinMaxTree(enemyTeam, currentEnemyPokemon,
+        MinMaxBattleNode root = MinMaxAlgorithm.generateMinMaxTree(
+                enemyTeam, currentEnemyPokemon,
                 playerTeam, currentPlayerPokemon, 0, 0);
         chosenMove = MinMaxAlgorithm.findInTree(root);
         return chosenMove;
