@@ -11,6 +11,7 @@ public class MinMaxBattleNode {
     private List<Pokemon> teamB;
     private List<MinMaxBattleNode> childNodes;
     private MinMaxBattleNode parentNode;
+    private int chosenMove;
 
     public MinMaxBattleNode(){
         childNodes = new ArrayList<>();
@@ -78,5 +79,13 @@ public class MinMaxBattleNode {
             copyList.add(p);
         }
         return copyList;
+    }
+
+    public void setChosenMove(int chosenMove) {
+        this.chosenMove = chosenMove;
+    }
+    
+    public int getChosenMove() {
+        return chosenMove;
     }
 }

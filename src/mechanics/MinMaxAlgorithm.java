@@ -1,6 +1,5 @@
 package mechanics;
 
-import java.util.ArrayList;
 import java.util.List;
 import models.MinMaxBattleNode;
 import models.Pokemon;
@@ -10,6 +9,7 @@ import models.Pokemon;
  */
 public class MinMaxAlgorithm {
 
+    private static int maxValuation;
     public static MinMaxBattleNode lastNode = null;
 
     //Team A is max, Team B is min
@@ -28,6 +28,17 @@ public class MinMaxAlgorithm {
                             MinMaxBattleNode child = generateMinMaxTree(teamA, i,
                                     teamB, currentB, ++teamPlaying, ++level);
                             child.setParentNode(head);
+                            switch (i) {
+                                case 0:
+                                    child.setChosenMove(-1);
+                                    break;
+                                case 1:
+                                    child.setChosenMove(-2);
+                                    break;
+                                case 2:
+                                    child.setChosenMove(-3);
+                                    break;
+                            }
                             head.getChildNodes().add(child);
                         }
                     }
@@ -39,6 +50,17 @@ public class MinMaxAlgorithm {
                                 MinMaxBattleNode child = generateMinMaxTree(teamA, currentA,
                                         teamB, i, ++teamPlaying, ++level);
                                 child.setParentNode(head);
+                                switch (i) {
+                                    case 0:
+                                        child.setChosenMove(-1);
+                                        break;
+                                    case 1:
+                                        child.setChosenMove(-2);
+                                        break;
+                                    case 2:
+                                        child.setChosenMove(-3);
+                                        break;
+                                }
                                 head.getChildNodes().add(child);
                             }
                         }
@@ -50,6 +72,17 @@ public class MinMaxAlgorithm {
                         MinMaxBattleNode child = generateMinMaxTree(teamA, currentA,
                                 teamB, i, ++teamPlaying, ++level);
                         child.setParentNode(head);
+                        switch (i) {
+                            case 0:
+                                child.setChosenMove(-1);
+                                break;
+                            case 1:
+                                child.setChosenMove(-2);
+                                break;
+                            case 2:
+                                child.setChosenMove(-3);
+                                break;
+                        }
                         head.getChildNodes().add(child);
                     }
                 }
@@ -61,6 +94,17 @@ public class MinMaxAlgorithm {
                             MinMaxBattleNode child = generateMinMaxTree(teamA, i,
                                     teamB, currentB, ++teamPlaying, ++level);
                             child.setParentNode(head);
+                            switch (i) {
+                                case 0:
+                                    child.setChosenMove(-1);
+                                    break;
+                                case 1:
+                                    child.setChosenMove(-2);
+                                    break;
+                                case 2:
+                                    child.setChosenMove(-3);
+                                    break;
+                            }
                             head.getChildNodes().add(child);
                         }
                     }
@@ -77,6 +121,31 @@ public class MinMaxAlgorithm {
     }
 
     public static int findInTree(MinMaxBattleNode root) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int chosenMove = 5;
+        maxValuation = 0;
+        MinMaxBattleNode cursor = root;
+        for (int i = 0; i < cursor.getChildNodes().size(); i++) {
+            nexPossibleMove(cursor.getChildNodes().get(i));
+        }
+        maxValuation = 0;
+        //encontramos la raiz y el hijo con el movimiento elegido
+        while (lastNode.getParentNode()!= null && lastNode.getParentNode().getParentNode() != null) {
+            lastNode = lastNode.getParentNode();
+        }
+        return lastNode.getChosenMove();
+    }
+
+    private static void nexPossibleMove(MinMaxBattleNode currentBattle) {
+        if (currentBattle.getChildNodes().isEmpty()) {
+            int value = FirstHeuristic.value(currentBattle.getTeamA(), currentBattle.getTeamB());
+            if (value > maxValuation) {
+                maxValuation = value;
+                lastNode = currentBattle;
+            }
+        } else {
+            for (int i = 0; i < currentBattle.getChildNodes().size(); i++) {
+                nexPossibleMove(currentBattle.getChildNodes().get(i));
+            }
+        }
     }
 }
