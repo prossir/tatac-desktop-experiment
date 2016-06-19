@@ -9,7 +9,6 @@ import models.Pokemon;
  */
 public class MinMaxAlgorithm {
 
-    private static boolean flagDone = false;
     public static MinMaxBattleNode lastNode = null;
 
     //Team A is max, Team B is min
@@ -19,63 +18,59 @@ public class MinMaxAlgorithm {
             MinMaxBattleNode head = new MinMaxBattleNode();
             head.setTeamA(teamA);
             head.setTeamB(teamB);
-            //2 states: best movement  and change
+            //3 states: best movement  and change and already dead change 
             boolean killed;
             if (teamPlaying % 2 == 0) {
-                killed = teamA.get(currentA).bestDamage(teamB.get(currentB));
-            } else {
-                killed = teamB.get(currentB).bestDamage(teamA.get(currentA));
-            }
-            if (killed) {
-                if (teamPlaying % 2 == 0) {
-                    for (int i = 0; i < teamB.size(); i++) {
-                        if (i != currentB && teamB.get(i).getHitPoints() != 0) {
-                            return generateMinMaxTree(teamA, currentA, teamB,
-                                    i, ++teamPlaying, ++level);
-                        }
-                    }
-
-                    if (currentB == -1) {//Won the day
-                        MinMaxBattleNode stump = new MinMaxBattleNode();
-                        stump.setTeamA(teamA);
-                        stump.setTeamB(teamB);
-                        stump.setChildNodes(null);
-                        stump.setParentNode(head);
-                        head.getChildNodes().add(stump);
-                        lastNode = stump;
-                        flagDone = true;
-                        return head;
-                    }
-                } else {
+                if (teamA.get(currentA).getHitPoints() <= 0) {//current member is dead
                     for (int i = 0; i < teamA.size(); i++) {
                         if (i != currentA && teamA.get(i).getHitPoints() != 0) {
-                            return generateMinMaxTree(teamA, i, teamB,
-                                    currentB, ++teamPlaying, ++level);
+                            MinMaxBattleNode child = generateMinMaxTree(teamA, i,
+                                    teamB, currentB, ++teamPlaying, ++level);
+                            child.setParentNode(head);
+                            head.getChildNodes().add(child);
                         }
                     }
-
-                    if (currentA == -1) {//Lose the day
-                        MinMaxBattleNode stump = new MinMaxBattleNode();
-                        stump.setTeamA(teamA);
-                        stump.setTeamB(teamB);
-                        stump.setChildNodes(null);
-                        stump.setParentNode(head);
-                        head.getChildNodes().add(stump);
-                        return head;
+                } else {//current member not dead
+                    killed = teamA.get(currentA).bestDamage(teamB.get(currentB));
+                    if (killed) {//current member kills oponent
+                        for (int i = 0; i < teamB.size(); i++) {
+                            if (i != currentB && teamB.get(i).getHitPoints() != 0) {
+                                MinMaxBattleNode child = generateMinMaxTree(teamA, currentA,
+                                        teamB, i, ++teamPlaying, ++level);
+                                child.setParentNode(head);
+                                head.getChildNodes().add(child);
+                            }
+                        }
+                    }
+                }
+            } else if (teamB.get(currentB).getHitPoints() <= 0) {//current member is dead
+                for (int i = 0; i < teamB.size(); i++) {
+                    if (i != currentB && teamB.get(i).getHitPoints() != 0) {
+                        MinMaxBattleNode child = generateMinMaxTree(teamA, currentA,
+                                teamB, i, ++teamPlaying, ++level);
+                        child.setParentNode(head);
+                        head.getChildNodes().add(child);
+                    }
+                }
+            } else {//current member not dead
+                killed = teamB.get(currentB).bestDamage(teamA.get(currentA));
+                if (killed) {//current member kills oponent
+                    for (int i = 0; i < teamA.size(); i++) {
+                        if (i != currentA && teamA.get(i).getHitPoints() != 0) {
+                            MinMaxBattleNode child = generateMinMaxTree(teamA, i,
+                                    teamB, currentB, ++teamPlaying, ++level);
+                            child.setParentNode(head);
+                            head.getChildNodes().add(child);
+                        }
                     }
                 }
             }
-
-            MinMaxBattleNode child = generateMinMaxTree(teamA, currentA, teamB,
-                    currentB, ++teamPlaying, ++level);
-            child.setParentNode(head);
-            head.getChildNodes().add(child);
             return head;
         } else {
             MinMaxBattleNode head = new MinMaxBattleNode();
             head.setTeamA(teamA);
             head.setTeamB(teamB);
-            
+
             return head;
         }
     }
