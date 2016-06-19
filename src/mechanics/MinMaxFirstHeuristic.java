@@ -7,7 +7,7 @@ import models.Pokemon;
 /**
  * @author paolo
  */
-public class MinMaxFirstHeuristicPokemonGenerator {
+public class MinMaxFirstHeuristic {
 
     private static boolean flagDone = false;
     public static MinMaxBattleNode lastNode = null;

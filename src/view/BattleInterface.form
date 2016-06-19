@@ -108,16 +108,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Move 2"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_move2ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="b_move3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Move 3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_move3ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="b_move4">
           <Properties>
             <Property name="text" type="java.lang.String" value="Move 4"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_move4ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="cb_change_pokemon">
           <Properties>

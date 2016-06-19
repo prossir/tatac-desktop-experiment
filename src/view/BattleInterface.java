@@ -68,10 +68,25 @@ public class BattleInterface extends javax.swing.JFrame {
         });
 
         b_move2.setText("Move 2");
+        b_move2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_move2ActionPerformed(evt);
+            }
+        });
 
         b_move3.setText("Move 3");
+        b_move3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_move3ActionPerformed(evt);
+            }
+        });
 
         b_move4.setText("Move 4");
+        b_move4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_move4ActionPerformed(evt);
+            }
+        });
 
         cb_change_pokemon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,7 +228,7 @@ public class BattleInterface extends javax.swing.JFrame {
                 0);
 
         BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
-                l_image_enemy_pokemon, pb_enemy_pokemon_life, 
+                l_image_enemy_pokemon, pb_enemy_pokemon_life,
                 l_enemy_pokemon_name, l_enemy_pokemon_status,
                 0, null, null, null, null);
     }//GEN-LAST:event_b_move1ActionPerformed
@@ -221,11 +236,42 @@ public class BattleInterface extends javax.swing.JFrame {
     private void cb_change_pokemonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_change_pokemonActionPerformed
         int selectedPokemon = cb_change_pokemon.getSelectedIndex();
         currentPlayerPokemon = selectedPokemon;
-        BattleStateController.setPokemon(playerTeam.get(currentPlayerPokemon), 
-                l_image_player_pokemon, pb_player_pokemon_life, 
+        BattleStateController.setPokemon(playerTeam.get(currentPlayerPokemon),
+                l_image_player_pokemon, pb_player_pokemon_life,
                 l_player_pokemon_name, l_player_pokemon_status,
                 1, b_move1, b_move2, b_move3, b_move4);
     }//GEN-LAST:event_cb_change_pokemonActionPerformed
+
+    private void b_move2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_move2ActionPerformed
+        playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
+                1);
+
+        BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
+                l_image_enemy_pokemon, pb_enemy_pokemon_life,
+                l_enemy_pokemon_name, l_enemy_pokemon_status,
+                0, null, null, null, null);
+    }//GEN-LAST:event_b_move2ActionPerformed
+
+    private void b_move3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_move3ActionPerformed
+        playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
+                2);
+
+        BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
+                l_image_enemy_pokemon, pb_enemy_pokemon_life,
+                l_enemy_pokemon_name, l_enemy_pokemon_status,
+                0, null, null, null, null);
+
+    }//GEN-LAST:event_b_move3ActionPerformed
+
+    private void b_move4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_move4ActionPerformed
+        playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
+                3);
+
+        BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
+                l_image_enemy_pokemon, pb_enemy_pokemon_life,
+                l_enemy_pokemon_name, l_enemy_pokemon_status,
+                0, null, null, null, null);
+    }//GEN-LAST:event_b_move4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,7 +319,7 @@ public class BattleInterface extends javax.swing.JFrame {
 
     private void loadBattle() {
         BattleStateController.setChangeablePokemon(playerTeam, cb_change_pokemon);
-        
+
         BattleStateController.setPokemon(enemyTeam.get(0), l_image_enemy_pokemon,
                 pb_enemy_pokemon_life, l_enemy_pokemon_name, l_enemy_pokemon_status,
                 0, null, null, null, null);
@@ -281,10 +327,11 @@ public class BattleInterface extends javax.swing.JFrame {
         BattleStateController.setPokemon(playerTeam.get(0), l_image_player_pokemon,
                 pb_player_pokemon_life, l_player_pokemon_name, l_player_pokemon_status,
                 1, b_move1, b_move2, b_move3, b_move4);
-        
+
         if (enemyTeam.get(0).getSpeed() > playerTeam.get(0).getSpeed()) {
             //Calculates next best MINIMAX move
-
+            //generateMinMaxTree(enemyTeam, currentEnemyPokemon, playerTeam, 
+            //        currentPlayerPokemon);
         }
     }
 }
