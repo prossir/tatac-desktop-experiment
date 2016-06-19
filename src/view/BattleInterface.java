@@ -249,11 +249,12 @@ public class BattleInterface extends javax.swing.JFrame {
 
     private void loadBattle() {
         BattleStateController.setPokemon(playerTeam.get(0), l_image_enemy_pokemon,
-                pb_enemy_pokemon_life, l_enemy_pokemon_name, l_enemy_pokemon_status, 0);
+                pb_enemy_pokemon_life, l_enemy_pokemon_name, l_enemy_pokemon_status, 
+                0, null, null, null, null);
 
         BattleStateController.setPokemon(enemyTeam.get(0), l_image_player_pokemon,
-                pb_player_pokemon_life, l_player_pokemon_name,
-                l_player_pokemon_status, 1);
+                pb_player_pokemon_life, l_player_pokemon_name, l_player_pokemon_status,
+                1, l_move_1, l_move_2, l_move_3, l_move_4);
 
         if (enemyTeam.get(0).getSpeed() > playerTeam.get(0).getSpeed()) {
             //Calculates next best MINIMAX move

@@ -13,13 +13,18 @@ public class BattleStateController {
 
     public static void setPokemon(Pokemon pokemon, JLabel l_image_pokemon,
             JProgressBar pb_pokemon_life, JLabel l_pokemon_name,
-            JLabel l_pokemon_status, int player) {
+            JLabel l_pokemon_status, int player, JLabel l_move_1,
+            JLabel l_move_2, JLabel l_move_3, JLabel l_move_4) {
         String trainerType;
 
         if (player == 0) {
             trainerType = "opponent";
         } else {
             trainerType = "player";
+            l_move_1.setText(pokemon.getChosenMoves().get(0).getName());
+            l_move_2.setText(pokemon.getChosenMoves().get(1).getName());
+            l_move_3.setText(pokemon.getChosenMoves().get(2).getName());
+            l_move_4.setText(pokemon.getChosenMoves().get(3).getName());
         }
 
         ImageIcon opponentImage = new ImageIcon("assets" + File.separator
