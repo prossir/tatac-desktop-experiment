@@ -71,10 +71,11 @@ public class BattleConfigurator extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_battleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_battleActionPerformed
-        List<Pokemon> allPokemons = PokemonLoaderController.loadPokemon();
+        int numberOfPokemonsOnDatabase = 7;
+        List<Pokemon> allPokemons = PokemonLoaderController.loadPokemon(numberOfPokemonsOnDatabase);
         List<Pokemon> playerTeam = new ArrayList<>();
         List<Pokemon> computerTeam = new ArrayList<>();
-        PokemonLoaderController.init(allPokemons, playerTeam, computerTeam, 6);
+        PokemonLoaderController.init(allPokemons, playerTeam, computerTeam, numberOfPokemonsOnDatabase);
         BattleInterface battleInterface = new BattleInterface(playerTeam, computerTeam);
         battleInterface.setVisible(true);
     }//GEN-LAST:event_b_battleActionPerformed

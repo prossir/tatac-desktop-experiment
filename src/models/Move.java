@@ -8,6 +8,9 @@ public class Move {
     private String type;
     private int basePower;
     private double accuracy;
+    private String kind;
+    private String special;
+    private int specialChance;
 
     public Move (){        
     }
@@ -67,5 +70,29 @@ public class Move {
     
     public String getName() {
         return name;
+    }
+
+    public String getKind() {
+        return kind;
+    }
+    
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
+    public String getSpecial() {
+        return special;
+    }
+    
+    public void setSpecial(String special) {
+        this.special = special;
+    }
+
+    public int getSpecialChance() {
+        return specialChance;
+    }
+    
+    public void setSpecialChance(int specialChance) {
+        this.specialChance = specialChance;
     }
 }

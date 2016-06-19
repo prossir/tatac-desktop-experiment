@@ -10,87 +10,88 @@ import java.util.Random;
 import models.Move;
 import models.Pokemon;
 
-/**
- *
- * @author paolo
- */
+/* * @author paolo */
 public class PokemonLoaderController {
-    public static List<Pokemon> loadPokemon(){
-        List<Pokemon> challengers =  new ArrayList<>();
-        try{
-            
-        File file = new File("pokemons.txt");
-	FileReader fileReader = new FileReader(file);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-	StringBuilder stringBuffer = new StringBuilder();
-	String line;
-	challengers = new ArrayList<> ();
-        for (int i = 0 ; i < 20 ; i++){ // Una iteracion por cada pokemon
-            line = bufferedReader.readLine();
-        
-            Pokemon a = new Pokemon ();
-                a.setName(line);
+
+    public static List<Pokemon> loadPokemon(int max) {
+        List<Pokemon> challengers = new ArrayList<>();
+        try {
+            File file = new File("pokemons.txt");
+            FileReader fileReader = new FileReader(file);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            StringBuilder stringBuffer = new StringBuilder();
+            String line;
+            challengers = new ArrayList<>();
+            for (int i = 0; i < max; i++) { // Una iteracion por cada pokemon
+                Pokemon pokemon = new Pokemon();
                 line = bufferedReader.readLine();
-                a.setHitPoints(Integer.parseInt(line));
-                line = bufferedReader.readLine();
-                a.setAttack(Integer.parseInt(line));
-                line = bufferedReader.readLine();
-                a.setDefense(Integer.parseInt(line));
-                line = bufferedReader.readLine();
-                a.setSpeed(Integer.parseInt(line));
+                String[] arrPokemonData = line.split(",");
+
+                pokemon.setName(arrPokemonData[0]);
+                pokemon.setHitPoints(Integer.parseInt(arrPokemonData[1]));
+                pokemon.setTotalHitPoints(Integer.parseInt(arrPokemonData[1]));
+                pokemon.setAttack(Integer.parseInt(arrPokemonData[2]));
+                pokemon.setDefense(Integer.parseInt(arrPokemonData[3]));
+                pokemon.setSpAttack(Integer.parseInt(arrPokemonData[4]));
+                pokemon.setSpDefense(Integer.parseInt(arrPokemonData[5]));
+                pokemon.setSpeed(Integer.parseInt(arrPokemonData[6]));
+                pokemon.setType(arrPokemonData[7]);
+
+                //we set the new moves
                 ArrayList<Move> powers = new ArrayList<>();
-                for (int j = 0 ; j < 8 ; j++){ //Una iteracion por cada poder 
-                    Move move = new Move ();
+                for (int j = 0; j < 6; j++) {
                     line = bufferedReader.readLine();//nombre
-                    move.setName(line);
-                    line = bufferedReader.readLine();   //basepower
-                    move.setBasePower(Integer.parseInt(line));
-                    line = bufferedReader.readLine();   //accuracy
-                    move.setAccuracy(Integer.parseInt(line));
-                    line = bufferedReader.readLine();   //
-                    move.setType(line);                    
+                    Move move = new Move();
+                    String[] arrMoveData = line.split(",");
+                    move.setName(arrMoveData[0]);
+                    move.setBasePower(Integer.parseInt(arrMoveData[1]));
+                    move.setAccuracy(Integer.parseInt(arrMoveData[2]));
+                    move.setType(arrMoveData[3]);
+                    move.setKind(arrMoveData[4]);
+                    move.setSpecial(arrMoveData[5]);
+                    move.setSpecialChance(Integer.parseInt(arrMoveData[6]));
                     powers.add(move);
                 }
-                a.setMoves(powers);
-                challengers.add(a);
-                bufferedReader.readLine();
+                pokemon.setMoves(powers);
+                challengers.add(pokemon);
             }
-        }
-        catch (IOException | NumberFormatException e){
-            System.out.println("Error de lectura");
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
         }
         return challengers;
-     }
-    
-    public static void init(List<Pokemon> pokemones, 
-            List<Pokemon> teamA, 
-            List<Pokemon> teamB, 
-            int max){
-        
-        for (int i =0;i<max;i++){
+    }
+
+    public static void init(List<Pokemon> pokemones, List<Pokemon> teamA,
+            List<Pokemon> teamB, int max) {
+
+        for (int i = 0; i < max; i++) {
             Random ran = new Random();
-            int a = ran.nextInt(20);
-            int b = ran.nextInt(20);
-            Pokemon pa = new Pokemon (pokemones.get(a));
+            int a = ran.nextInt(max);
+            int b = ran.nextInt(max);
+            Pokemon pa = new Pokemon(pokemones.get(a));
             choosePowers(pa);
-            Pokemon pb = new Pokemon (pokemones.get(b));
+            Pokemon pb = new Pokemon(pokemones.get(b));
             choosePowers(pb);
             teamA.add(pa);
             teamB.add(pb);
         }
-        
-        
     }
-    
-    private static void choosePowers(Pokemon p){    
+
+    private static void choosePowers(Pokemon p) {
         Random ran = new Random();
-        int a = ran.nextInt(8);
-        int b = ran.nextInt(8);
-        int c = ran.nextInt(8);
-        int d = ran.nextInt(8);
-        while (b==a) b=ran.nextInt(8);
-        while (c==a || c==b) c=ran.nextInt(8);
-        while (d==a || d==b || d==c) d=ran.nextInt(8);
+        int a = ran.nextInt(6);
+        int b = ran.nextInt(6);
+        int c = ran.nextInt(6);
+        int d = ran.nextInt(6);
+        while (b == a) {
+            b = ran.nextInt(6);
+        }
+        while (c == a || c == b) {
+            c = ran.nextInt(6);
+        }
+        while (d == a || d == b || d == c) {
+            d = ran.nextInt(6);
+        }
         p.getChosenMoves().add(p.getMoves().get(a));
         p.getChosenMoves().add(p.getMoves().get(b));
         p.getChosenMoves().add(p.getMoves().get(c));

@@ -5,17 +5,22 @@ import java.awt.Color;
 import java.util.List;
 import models.Pokemon;
 
-/** @author paolo */
+/**
+ * @author paolo
+ */
 public class BattleInterface extends javax.swing.JFrame {
+
     private List<Pokemon> playerTeam;
     private List<Pokemon> enemyTeam;
-    
+
     public BattleInterface() {
         initComponents();
         loadBattle();
     }
 
-    BattleInterface(List<Pokemon> playerTeam, List<Pokemon> computerTeam) {
+    public BattleInterface(List<Pokemon> playerTeam, List<Pokemon> computerTeam) {
+        this.playerTeam = playerTeam;
+        this.enemyTeam = computerTeam;
         initComponents();
         loadBattle();
     }
@@ -217,12 +222,6 @@ public class BattleInterface extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(BattleInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        //</editor-fold>
-        //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new BattleInterface().setVisible(true);
@@ -249,22 +248,16 @@ public class BattleInterface extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void loadBattle() {
-        Pokemon dummyEnemyPokemon = new Pokemon();
-        dummyEnemyPokemon.setName("Milotic");
-        dummyEnemyPokemon.setTotalHitPoints(141);
-        dummyEnemyPokemon.setHitPoints(141);
-        
-        Pokemon dummyPlayerPokemon = new Pokemon();
-        dummyPlayerPokemon.setName("Milotic");
-        dummyPlayerPokemon.setTotalHitPoints(141);
-        dummyPlayerPokemon.setHitPoints(141);
-        
-        BattleStateController.setPokemon(dummyEnemyPokemon, l_image_enemy_pokemon,
+        BattleStateController.setPokemon(playerTeam.get(0), l_image_enemy_pokemon,
                 pb_enemy_pokemon_life, l_enemy_pokemon_name, l_enemy_pokemon_status, 0);
-        
-        BattleStateController.setPokemon(dummyPlayerPokemon, l_image_player_pokemon,
-                pb_player_pokemon_life, l_player_pokemon_name, 
+
+        BattleStateController.setPokemon(enemyTeam.get(0), l_image_player_pokemon,
+                pb_player_pokemon_life, l_player_pokemon_name,
                 l_player_pokemon_status, 1);
-       
+
+        if (enemyTeam.get(0).getSpeed() > playerTeam.get(0).getSpeed()) {
+            //Calculates next best MINIMAX move
+
+        }
     }
 }

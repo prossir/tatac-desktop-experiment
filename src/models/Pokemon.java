@@ -11,6 +11,8 @@ public class Pokemon {
     private int hitPoints;
     private int attack;
     private int defense;
+    private int spAttack;
+    private int spDefense;
     private int speed;
     private List<Move> moves;
     private List<Move> choosenMoves;
@@ -23,6 +25,7 @@ public class Pokemon {
     public Pokemon(Pokemon pokemon) {
         name = pokemon.name;
         hitPoints = pokemon.hitPoints;
+        totalHitPoints = pokemon.totalHitPoints;
         attack = pokemon.attack;
         defense = pokemon.defense;
         speed = pokemon.speed;
@@ -153,12 +156,28 @@ public class Pokemon {
         this.totalHitPoints = totalHitPoints;
     }
 
+    public String getType() {
+        return pokemonType;
+    }
+
     public void setType(String pokemonType) {
         this.pokemonType = pokemonType;
     }
 
-    public String getType() {
-        return pokemonType;
+    public int getSpAttack() {
+        return spAttack;
+    }
+
+    public void setSpAttack(int spAttack) {
+        this.spAttack = spAttack;
+    }
+
+    public int getSpDefense() {
+        return spDefense;
+    }
+
+    public void setSpDefense(int spDefense) {
+        this.spDefense = spDefense;
     }
 
     public boolean bestDamage(Pokemon p) {
