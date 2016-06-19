@@ -244,6 +244,11 @@ public class BattleInterface extends javax.swing.JFrame {
                 l_image_player_pokemon, pb_player_pokemon_life,
                 l_player_pokemon_name, l_player_pokemon_status,
                 1, b_move1, b_move2, b_move3, b_move4);
+
+        b_move1.setEnabled(true);
+        b_move2.setEnabled(true);
+        b_move3.setEnabled(true);
+        b_move4.setEnabled(true);
     }//GEN-LAST:event_cb_change_pokemonActionPerformed
 
     private void b_move2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_move2ActionPerformed
@@ -348,8 +353,8 @@ public class BattleInterface extends javax.swing.JFrame {
         l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
                 + " ha hecho " + damage
                 + "de danho, con " + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(chosenMove).getName());
-
-        //Calculates next best MINIMAX move of enemy 
+        
+        //Calculates next best MINIMAX move of enemy. Includes the escenario where the poke is dead
         int moveChoosen = BattleStateController.enemyMove(enemyTeam, currentEnemyPokemon, playerTeam,
                 currentPlayerPokemon);
 
@@ -357,18 +362,50 @@ public class BattleInterface extends javax.swing.JFrame {
 
             damage = enemyTeam.get(0).damage(playerTeam.get(currentPlayerPokemon),
                     moveChoosen);
-
-            BattleStateController.setPokemon(playerTeam.get(currentPlayerPokemon), l_image_player_pokemon,
-                    pb_player_pokemon_life, l_player_pokemon_name, l_player_pokemon_status,
-                    1, b_move1, b_move2, b_move3, b_move4);
-
-            l_announcement.setText("El " + enemyTeam.get(currentEnemyPokemon).getName()
-                    + " enemigo ha hecho "
-                    + damage
-                    + "de danho, con "
-                    + enemyTeam.get(0).getChosenMoves().get(moveChoosen).getName());
-        }else{// -1 -> 0; -2 -> 1 ...
             
+            BattleStateController.setPokemon(playerTeam.get(currentPlayerPokemon), l_image_player_pokemon,
+                        pb_player_pokemon_life, l_player_pokemon_name, l_player_pokemon_status,
+                        1, b_move1, b_move2, b_move3, b_move4);
+            
+            if (playerTeam.get(currentPlayerPokemon).getHitPoints() > 0) {//our pokemon is still alive            
+                
+
+                l_announcement.setText("El " + enemyTeam.get(currentEnemyPokemon).getName()
+                        + " enemigo ha hecho "
+                        + damage
+                        + "de danho, con "
+                        + enemyTeam.get(0).getChosenMoves().get(moveChoosen).getName());
+            } else {//our pokemon dies
+                disableMoves();
+                l_announcement.setText(playerTeam.get(currentPlayerPokemon).getName()
+                        + " ha caido.");
+            }
+            
+        } else {// -1 -> 0; -2 -> 1 ...
+            switch (chosenMove) {
+                case -1:
+                    chosenMove = 0;
+                    break;
+                case -2:
+                    chosenMove = 1;
+                    break;
+                case -3:
+                    chosenMove = 2;
+                    break;
+            }
+
+            currentEnemyPokemon = chosenMove;
+            BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
+                    l_image_enemy_pokemon, pb_enemy_pokemon_life,
+                    l_enemy_pokemon_name, l_enemy_pokemon_status,
+                    0, null, null, null, null);
         }
+    }
+
+    private void disableMoves() {
+        b_move1.setEnabled(false);
+        b_move2.setEnabled(false);
+        b_move3.setEnabled(false);
+        b_move4.setEnabled(false);
     }
 }
