@@ -313,63 +313,13 @@ public class BattleInterface extends javax.swing.JFrame {
     private void loadBattle() {
         BattleStateController.setChangeablePokemon(playerTeam, cb_change_pokemon);
 
-        BattleStateController.setPokemon(enemyTeam.get(0), l_image_enemy_pokemon,
+        BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon), l_image_enemy_pokemon,
                 pb_enemy_pokemon_life, l_enemy_pokemon_name, l_enemy_pokemon_status,
                 0, null, null, null, null);
 
-        BattleStateController.setPokemon(playerTeam.get(0), l_image_player_pokemon,
+        BattleStateController.setPokemon(playerTeam.get(currentPlayerPokemon), l_image_player_pokemon,
                 pb_player_pokemon_life, l_player_pokemon_name, l_player_pokemon_status,
                 1, b_move1, b_move2, b_move3, b_move4);
-
-        //Enemy turn
-        if (enemyTeam.get(0).getSpeed() > playerTeam.get(0).getSpeed()) {
-            //Calculates next best MINIMAX move
-
-            int moveChoosen = BattleStateController.enemyMove(enemyTeam, currentEnemyPokemon, playerTeam,
-                    currentPlayerPokemon);
-
-            if (moveChoosen > -1) {
-
-                int damage = enemyTeam.get(0).damage(playerTeam.get(currentPlayerPokemon),
-                        moveChoosen);
-
-                BattleStateController.setPokemon(playerTeam.get(currentPlayerPokemon), l_image_player_pokemon,
-                        pb_player_pokemon_life, l_player_pokemon_name, l_player_pokemon_status,
-                        1, b_move1, b_move2, b_move3, b_move4);
-
-                if (playerTeam.get(currentPlayerPokemon).getHitPoints() > 0) {//our pokemon is still alive            
-
-                    l_announcement.setText("El " + enemyTeam.get(currentEnemyPokemon).getName()
-                            + " enemigo ha hecho "
-                            + damage
-                            + "de danho, con "
-                            + enemyTeam.get(0).getChosenMoves().get(moveChoosen).getName());
-                } else {//our pokemon dies
-                    disableMoves();
-                    l_announcement.setText(playerTeam.get(currentPlayerPokemon).getName()
-                            + " ha caido.");
-                }
-
-            } else {// -1 -> 0; -2 -> 1 ...
-                switch (moveChoosen) {
-                    case -1:
-                        moveChoosen = 0;
-                        break;
-                    case -2:
-                        moveChoosen = 1;
-                        break;
-                    case -3:
-                        moveChoosen = 2;
-                        break;
-                }
-
-                currentEnemyPokemon = moveChoosen;
-                BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
-                        l_image_enemy_pokemon, pb_enemy_pokemon_life,
-                        l_enemy_pokemon_name, l_enemy_pokemon_status,
-                        0, null, null, null, null);
-            }
-        }
     }
 
     private void executeTurnAndResponse(int chosenMove) {
