@@ -91,17 +91,16 @@ public class MinMaxBattleNode {
         return chosenMove;
     }
 
-    public boolean sameState(MinMaxBattleNode root) {
-        boolean a = (getChildNodes().isEmpty()) && (root.getChildNodes().isEmpty())
-                && root.getChosenMove() == getChosenMove();
-        if (a) {
-            for (int i = 0; i < 3; i++) {
-                if (getTeamA().get(i).getHitPoints() != root.getTeamA().get(i).getHitPoints()
-                        || getTeamB().get(i).getHitPoints() != root.getTeamB().get(i).getHitPoints()) {
-                    return false;
-                }
-            }
+    public boolean endState() {
+        if ((getTeamA().get(0).getHitPoints() == 0
+                && getTeamA().get(1).getHitPoints() == 0
+                && getTeamA().get(2).getHitPoints() == 0)
+                || (getTeamB().get(0).getHitPoints() == 0
+                && getTeamB().get(1).getHitPoints() == 0
+                && getTeamB().get(2).getHitPoints() == 0)) {
+            return true;
         }
-        return true;
+
+        return false;
     }
 }

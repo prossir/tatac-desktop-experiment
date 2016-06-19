@@ -373,50 +373,70 @@ public class BattleInterface extends javax.swing.JFrame {
     }
 
     private void executeTurnAndResponse(int chosenMove) {
-        int damage = playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
-                chosenMove);
+        if (playerTeam.get(currentPlayerPokemon).getSpeed() //The player pokemon is quicker than the other
+                >= enemyTeam.get(currentEnemyPokemon).getSpeed()) {
+            playerBeginsTurn(chosenMove);
+        } else {//Enemy plays last
+            enemyBeginsTurn(chosenMove);
+        }
+    }
 
-        BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
-                l_image_enemy_pokemon, pb_enemy_pokemon_life,
-                l_enemy_pokemon_name, l_enemy_pokemon_status,
-                0, null, null, null, null);
+    private void disableMoves() {
+        b_move1.setEnabled(false);
+        b_move2.setEnabled(false);
+        b_move3.setEnabled(false);
+        b_move4.setEnabled(false);
+    }
 
-        l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
-                + " ha hecho " + damage
-                + "de danho, con " + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(chosenMove).getName());
-
+    private void playerBeginsTurn(int chosenMove) {
+        playerPlays(chosenMove);
         //Calculates next best MINIMAX move of enemy. Includes the escenario where the poke is dead
+        enemyPlays();
+    }
+
+    private void enemyBeginsTurn(int chosenMove) {
+        int state = enemyPlays();
+        switch (state) {
+            case 2://ganaron no se que poner aqui
+                break;
+            case 1:
+                playerPlays(chosenMove);
+                break;
+            case 0:// our pokemon has died
+                break;
+            default:
+                break;
+        }
+    }
+
+    private int enemyPlays() {
         int moveChoosen = BattleStateController.enemyMove(enemyTeam, currentEnemyPokemon, playerTeam,
                 currentPlayerPokemon);
-
         if (moveChoosen > -1) {
+            int damage = enemyTeam.get(0).damage(playerTeam.get(currentPlayerPokemon), moveChoosen);
 
-            damage = enemyTeam.get(0).damage(playerTeam.get(currentPlayerPokemon),
-                    moveChoosen);
-
-            BattleStateController.setPokemon(playerTeam.get(currentPlayerPokemon), l_image_player_pokemon,
-                    pb_player_pokemon_life, l_player_pokemon_name, l_player_pokemon_status,
-                    1, b_move1, b_move2, b_move3, b_move4);
+            BattleStateController.setPokemon(playerTeam.get(currentPlayerPokemon),
+                    l_image_player_pokemon, pb_player_pokemon_life, l_player_pokemon_name,
+                    l_player_pokemon_status, 1, b_move1, b_move2, b_move3, b_move4);
 
             if (playerTeam.get(currentPlayerPokemon).getHitPoints() > 0) {//our pokemon is still alive            
-
                 l_announcement.setText("El " + enemyTeam.get(currentEnemyPokemon).getName()
                         + " enemigo ha hecho "
                         + damage
                         + "de danho, con "
                         + enemyTeam.get(0).getChosenMoves().get(moveChoosen).getName());
+                return 1; //player pokemon still alive
             } else {//our pokemon dies
                 disableMoves();
                 l_announcement.setText(playerTeam.get(currentPlayerPokemon).getName()
                         + " ha caido.");
+                return 0; //player pokemon is dead
             }
-
         } else {// -1 -> 0; -2 -> 1 ...
-            if(moveChoosen == -4){
+            if (moveChoosen == -4) {
                 l_announcement.setText("Fin de la partida");
-                return;
+                return 2; //enemy team has won
             }
-            
             switch (moveChoosen) {
                 case -1:
                     moveChoosen = 0;
@@ -434,13 +454,20 @@ public class BattleInterface extends javax.swing.JFrame {
                     l_image_enemy_pokemon, pb_enemy_pokemon_life,
                     l_enemy_pokemon_name, l_enemy_pokemon_status,
                     0, null, null, null, null);
+            return 1; //player pokemon still alive
         }
     }
 
-    private void disableMoves() {
-        b_move1.setEnabled(false);
-        b_move2.setEnabled(false);
-        b_move3.setEnabled(false);
-        b_move4.setEnabled(false);
+    private void playerPlays(int chosenMove) {
+        int damage = playerTeam.get(currentPlayerPokemon).damage(enemyTeam.get(currentEnemyPokemon),
+                chosenMove);
+
+        BattleStateController.setPokemon(enemyTeam.get(currentEnemyPokemon),
+                l_image_enemy_pokemon, pb_enemy_pokemon_life, l_enemy_pokemon_name,
+                l_enemy_pokemon_status, 0, null, null, null, null);
+
+        l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
+                + " ha hecho " + damage + "de danho, con "
+                + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(chosenMove).getName());
     }
 }
