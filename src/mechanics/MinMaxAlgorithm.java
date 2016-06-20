@@ -138,15 +138,6 @@ public class MinMaxAlgorithm {
         int chosenMove, endgame = 0;
         maxValuation = 0;
         MinMaxBattleNode cursor = root;
-
-        //for (int i = 0; i < cursor.getChildNodes().size(); i++) {
-        //    if (cursor.getChildNodes().get(i).getChildNodes().isEmpty()) {
-        //        endgame++;
-        //    }
-        //}
-        //if (endgame == cursor.getChildNodes().size()) {
-        //    return -4;
-        //}
         for (int i = 0; i < cursor.getChildNodes().size(); i++) {
             nexPossibleMove(cursor.getChildNodes().get(i));
         }

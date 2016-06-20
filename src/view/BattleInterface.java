@@ -177,8 +177,6 @@ public class BattleInterface extends javax.swing.JFrame {
         l_enemy_pokemon_name.setForeground(new java.awt.Color(245, 231, 231));
         l_enemy_pokemon_name.setText("Enemy Pokemon Name");
 
-        l_image_enemy_pokemon.setBackground(new Color(0,255,0,0));
-        l_image_enemy_pokemon.setForeground(new Color(0,225,0,0));
         l_image_enemy_pokemon.setOpaque(true);
 
         l_enemy_pokemon_status.setForeground(new java.awt.Color(255, 255, 255));
