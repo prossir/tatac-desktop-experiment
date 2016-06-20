@@ -139,10 +139,10 @@ public class MinMaxAlgorithm {
             findLeaves(cursor.getChildNodes().get(i));
         }
 
-        trueNode = cursor.getChildNodes().get(0);
+        trueNode = root.getChildNodes().get(0);
         //encontramos los hijos de la raiz el que tenga mayor valor es el siguiente mov.
         for (int i = 0; i < cursor.getChildNodes().size(); i++) {
-            if (cursor.getChildNodes().get(i).getEvaluation() > 
+            if (cursor.getChildNodes().get(i).getEvaluation() < 
                     trueNode.getEvaluation()) {
                 trueNode = cursor.getChildNodes().get(i);
             }
