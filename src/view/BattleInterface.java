@@ -14,6 +14,8 @@ public class BattleInterface extends javax.swing.JFrame {
     private List<Pokemon> enemyTeam;
     private int currentPlayerPokemon;
     private int currentEnemyPokemon;
+    private int currentPlayerAlive;
+    private int currentEnemyAlive;
 
     public BattleInterface() {
         initComponents();
@@ -23,6 +25,8 @@ public class BattleInterface extends javax.swing.JFrame {
     public BattleInterface(List<Pokemon> playerTeam, List<Pokemon> computerTeam) {
         this.playerTeam = playerTeam;
         this.enemyTeam = computerTeam;
+        currentPlayerAlive = playerTeam.size();
+        currentEnemyAlive = computerTeam.size();
         currentEnemyPokemon = 0;
         currentPlayerPokemon = 0;
         initComponents();
@@ -378,8 +382,13 @@ public class BattleInterface extends javax.swing.JFrame {
                 return 1; //player pokemon still alive
             } else {//our pokemon dies
                 disableMoves();
+                currentPlayerAlive--;
                 l_announcement.setText(playerTeam.get(currentPlayerPokemon).getName()
                         + " ha caido.");
+                if (currentPlayerAlive == 0) {
+                    l_announcement.setText("Has perdido");
+                }
+
                 return 0; //player pokemon is dead
             }
         } else {// -1 -> 0; -2 -> 1 ...
@@ -416,8 +425,20 @@ public class BattleInterface extends javax.swing.JFrame {
                 l_image_enemy_pokemon, pb_enemy_pokemon_life, l_enemy_pokemon_name,
                 l_enemy_pokemon_status, 0, null, null, null, null);
 
-        l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
-                + " ha hecho " + damage + "de danho, con "
-                + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(chosenMove).getName());
+        if (enemyTeam.get(currentEnemyPokemon).getHitPoints() <= 0) {
+            l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
+                    + " ha hecho " + damage + "de danho, con "
+                    + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(chosenMove).getName());
+
+            currentEnemyAlive--;
+            if (currentEnemyAlive == 0) {
+                l_announcement.setText("Has ganado");
+
+            }
+        } else {
+            l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
+                    + " ha hecho " + damage + "de danho, con "
+                    + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(chosenMove).getName());
+        }
     }
 }
