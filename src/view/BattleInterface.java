@@ -356,7 +356,7 @@ public class BattleInterface extends javax.swing.JFrame {
     private void enemyBeginsTurn(int chosenMove) {
         int state = enemyPlays();
         switch (state) {
-            case 2://ganaron no se que poner aqui
+            case 2://has one 
                 break;
             case 1:
                 playerPlays(chosenMove);
@@ -399,10 +399,6 @@ public class BattleInterface extends javax.swing.JFrame {
                 return 0; //player pokemon is dead
             }
         } else {// -1 -> 0; -2 -> 1 ...
-            if (moveChoosen == -4) {
-                l_announcement.setText("Fin de la partida");
-                return 2; //enemy team has won
-            }
             switch (moveChoosen) {
                 case -1:
                     moveChoosen = 0;

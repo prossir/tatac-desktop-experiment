@@ -59,9 +59,11 @@ public class BattleStateController {
         int chosenMove = 0;
         List<Pokemon> copyEnemyTeam = copyTeam(enemyTeam);
         List<Pokemon> copyPlayerTeam = copyTeam(playerTeam);
+        //Minimax crea el arbol
         MinMaxBattleNode root = MinMaxAlgorithm.generateMinMaxTree(
                 copyEnemyTeam, currentEnemyPokemon,
                 copyPlayerTeam, currentPlayerPokemon, 0, 0);
+        //Minimax escoge con su heuristica el mejor camino
         chosenMove = MinMaxAlgorithm.findInTree(root);
         return chosenMove;
     }

@@ -136,12 +136,12 @@ public class MinMaxAlgorithm {
 
     public static int findInTree(MinMaxBattleNode root) {
         int chosenMove, endgame = 0;
-        maxValuation = 0;
+        maxValuation = 9999;
         MinMaxBattleNode cursor = root;
         for (int i = 0; i < cursor.getChildNodes().size(); i++) {
             nexPossibleMove(cursor.getChildNodes().get(i));
         }
-        maxValuation = 0;
+        maxValuation = 9999;
 
         //encontramos la raiz y el hijo con el movimiento elegido si el hijo y la
         //raiz son iguales, la partida termina
@@ -154,7 +154,7 @@ public class MinMaxAlgorithm {
     private static void nexPossibleMove(MinMaxBattleNode currentBattle) {
         if (currentBattle.getChildNodes().isEmpty()) {
             int value = FirstHeuristic.value(currentBattle.getTeamA(), currentBattle.getTeamB());
-            if (value > maxValuation) {
+            if (value < maxValuation) {
                 maxValuation = value;
                 lastNode = currentBattle;
             }

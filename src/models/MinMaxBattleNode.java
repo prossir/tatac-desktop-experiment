@@ -58,6 +58,11 @@ public class MinMaxBattleNode {
      */
     public void setChildNodes(List<MinMaxBattleNode> childNodes) {
         this.childNodes = childNodes;
+        if(!childNodes.isEmpty()){
+            childNodes.stream().forEach((child) -> {
+                child.setParentNode(this);
+            });
+        }
     }
 
     /**
