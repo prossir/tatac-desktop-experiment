@@ -31,6 +31,10 @@ public class Pokemon {
         speed = pokemon.speed;
         moves = pokemon.moves;
         choosenMoves = new ArrayList<>();
+        choosenMoves.add(pokemon.getChosenMoves().get(0));
+        choosenMoves.add(pokemon.getChosenMoves().get(1));
+        choosenMoves.add(pokemon.getChosenMoves().get(2));
+        choosenMoves.add(pokemon.getChosenMoves().get(3));
     }
 
     /**
@@ -183,9 +187,10 @@ public class Pokemon {
 
     public boolean bestDamage(Pokemon p) {
         int maxDamage = -9999;
-        //jugada del 0 al 3, el numero 4 es cambiar
+        int damage;
+//jugada del 0 al 3, el numero 4 es cambiar
         for (int i = 0; i < this.getChosenMoves().size(); i++) {
-            int damage = this.calculateDamage(p, i);
+            damage = this.calculateDamage(p, i);
             if (maxDamage < damage) {
                 maxDamage = damage;
             }
