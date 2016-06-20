@@ -15,7 +15,6 @@ import models.Pokemon;
  */
 public class SecondHeuristic {
     
-    private int cantPoblacionMax = 26;
     private double[] pesos;
     private double heuristicValue;
     
