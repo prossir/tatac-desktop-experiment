@@ -18,6 +18,11 @@ public class Pokemon {
     private List<Move> choosenMoves;
     private String pokemonType;
 
+    //Para el minMax
+    private int rateBurning;
+    private int ratePoisoning;
+    private int paralized; // 0,1,2,3, etc que son los turnos que estara dormido
+
     public Pokemon() {
 
     }
@@ -31,10 +36,39 @@ public class Pokemon {
         speed = pokemon.speed;
         moves = pokemon.moves;
         choosenMoves = new ArrayList<>();
+
         choosenMoves.add(pokemon.getChosenMoves().get(0));
         choosenMoves.add(pokemon.getChosenMoves().get(1));
         choosenMoves.add(pokemon.getChosenMoves().get(2));
         choosenMoves.add(pokemon.getChosenMoves().get(3));
+
+        rateBurning = pokemon.rateBurning;
+        ratePoisoning = pokemon.ratePoisoning;
+        paralized = pokemon.paralized;
+    }
+
+    public int getRateBurning() {
+        return rateBurning;
+    }
+
+    public void setRateBurning(int rateBurning) {
+        this.rateBurning = rateBurning;
+    }
+
+    public int getRatePoisoning() {
+        return ratePoisoning;
+    }
+
+    public void setRatePoisoning(int ratePoisoning) {
+        this.ratePoisoning = ratePoisoning;
+    }
+
+    public int getParalized() {
+        return paralized;
+    }
+
+    public void setParalized(int paralized) {
+        this.paralized = paralized;
     }
 
     /**
@@ -128,6 +162,36 @@ public class Pokemon {
      * @param moveNumber
      * @return
      */
+    public int attack(Pokemon pokemon, int moveNumber) {
+        int badLuck = (int) (Math.random() * 100);
+        if (badLuck < moves.get(moveNumber).getAccuracy()) {
+            //Sí le cae el ataque
+            int newlife = pokemon.getHitPoints() - this.damage(pokemon, moveNumber);
+            if (newlife < 0) {
+                newlife = 0;
+            }
+            pokemon.setHitPoints(newlife);
+            //Daños en futuro, aparte del daño instantaneo.
+            //Si el daño anterior se esquiva, este tambien :v
+            int r;
+            r = moves.get(moveNumber).getRateBurning();
+            if (r > pokemon.getRateBurning()) {
+                pokemon.setRateBurning(r);
+            }
+
+            r = moves.get(moveNumber).getRatePoisoning();
+            if (r > pokemon.getRatePoisoning()) {
+                pokemon.setRatePoisoning(r);
+            }
+
+            //Se acumulan las paralizaciones :v
+            r = moves.get(moveNumber).getParalized() + pokemon.getParalized();
+            pokemon.setParalized(r);
+            return 1;
+        }
+        return 0;
+    }
+
     public int damage(Pokemon pokemon, int moveNumber) {
         int damage = (int) ((this.attack / (pokemon.getDefense() + pokemon.getSpeed() * 0.1))
                 * moves.get(moveNumber).getBasePower());

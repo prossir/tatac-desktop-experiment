@@ -11,6 +11,11 @@ public class Move {
     private String kind;
     private String special;
     private int specialChance;
+    
+    //Para el minMax
+    private int rateBurning;
+    private int ratePoisoning;
+    private int paralized; // 0,1,2,3, etc que son los turnos que estara dormido
 
     public Move (){        
     }
@@ -20,6 +25,38 @@ public class Move {
         type = e.type;
         basePower=e.basePower;
         accuracy = e.accuracy;
+        
+        kind = e.kind;
+        special=e.special;
+        specialChance=e.specialChance;
+        
+        rateBurning=e.rateBurning;
+        ratePoisoning=e.ratePoisoning;
+        e.paralized=e.paralized;
+    }
+    
+    public int getRateBurning() {
+        return rateBurning;
+    }
+    
+    public void setRateBurning(int rateBurning) {
+        this.rateBurning = rateBurning;
+    }
+    
+    public int getRatePoisoning() {
+        return ratePoisoning;
+    }
+    
+    public void setRatePoisoning(int ratePoisoning) {
+        this.ratePoisoning = ratePoisoning;
+    }
+    
+    public int getParalized() {
+        return paralized;
+    }
+    
+    public void setParalized(int paralized) {
+        this.paralized = paralized;
     }
     
     /**
