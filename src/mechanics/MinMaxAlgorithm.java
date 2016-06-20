@@ -1,5 +1,6 @@
 package mechanics;
 
+import java.util.ArrayList;
 import java.util.List;
 import models.MinMaxBattleNode;
 import models.Pokemon;
@@ -73,15 +74,15 @@ public class MinMaxAlgorithm {
         maxValuation = 0;
         MinMaxBattleNode cursor = root;
 
-        for (int i = 0; i < cursor.getChildNodes().size(); i++) {
-            if (cursor.getChildNodes().get(i).getChildNodes().isEmpty()) {
-                endgame++;
-            }
-        }
+        //for (int i = 0; i < cursor.getChildNodes().size(); i++) {
+        //    if (cursor.getChildNodes().get(i).getChildNodes().isEmpty()) {
+        //        endgame++;
+        //    }
+        //}
 
-        if (endgame == cursor.getChildNodes().size()) {
-            return -4;
-        }
+        //if (endgame == cursor.getChildNodes().size()) {
+        //    return -4;
+        //}
 
         for (int i = 0; i < cursor.getChildNodes().size(); i++) {
             nexPossibleMove(cursor.getChildNodes().get(i));
@@ -124,8 +125,10 @@ public class MinMaxAlgorithm {
         if (AorB == 0) {
             for (int i = 0; i < teamA.size(); i++) {
                 if (i != currentA && teamA.get(i).getHitPoints() != 0) {
-                    MinMaxBattleNode child = generateMinMaxTree(teamA, i,
-                            teamB, currentB, 1 + teamPlaying, 1 + level);
+                    List<Pokemon> copyTeamA = copyTeam(teamA);
+                    List<Pokemon> copyTeamB = copyTeam(teamA);
+                    MinMaxBattleNode child = generateMinMaxTree(copyTeamA, i,
+                            copyTeamB, currentB, 1 + teamPlaying, 1 + level);
                     child.setParentNode(head);
                     switch (i) {
                         case 0:
@@ -144,8 +147,10 @@ public class MinMaxAlgorithm {
         } else {
             for (int i = 0; i < teamB.size(); i++) {
                 if (i != currentB && teamB.get(i).getHitPoints() != 0) {
-                    MinMaxBattleNode child = generateMinMaxTree(teamA, currentA,
-                            teamB, i, 1 + teamPlaying, 1 + level);
+                    List<Pokemon> copyTeamA = copyTeam(teamA);
+                    List<Pokemon> copyTeamB = copyTeam(teamA);
+                    MinMaxBattleNode child = generateMinMaxTree(copyTeamA, currentA,
+                            copyTeamB, i, 1 + teamPlaying, 1 + level);
                     child.setParentNode(head);
                     switch (i) {
                         case 0:
@@ -162,5 +167,13 @@ public class MinMaxAlgorithm {
                 }
             }
         }
+    }
+
+    private static List<Pokemon> copyTeam(List<Pokemon> originalTeam) {
+        List<Pokemon> copyTeam = new ArrayList<>();
+        for (int i = 0; i < originalTeam.size(); i++) {
+            copyTeam.add(new Pokemon(originalTeam.get(i)));
+        }
+        return copyTeam;
     }
 }

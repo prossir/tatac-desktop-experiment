@@ -28,13 +28,13 @@ public class PokemonLoaderController {
                 String[] arrPokemonData = line.split(",");
 
                 pokemon.setName(arrPokemonData[0]);
-                pokemon.setHitPoints(Integer.parseInt(arrPokemonData[1]));
-                pokemon.setTotalHitPoints(Integer.parseInt(arrPokemonData[1]));
-                pokemon.setAttack(Integer.parseInt(arrPokemonData[2]));
-                pokemon.setDefense(Integer.parseInt(arrPokemonData[3]));
-                pokemon.setSpAttack(Integer.parseInt(arrPokemonData[4]));
-                pokemon.setSpDefense(Integer.parseInt(arrPokemonData[5]));
-                pokemon.setSpeed(Integer.parseInt(arrPokemonData[6]));
+                pokemon.setHitPoints(Integer.parseInt(arrPokemonData[1])*2 + 110);
+                pokemon.setTotalHitPoints(Integer.parseInt(arrPokemonData[1])*2 + 110);
+                pokemon.setAttack(Integer.parseInt(arrPokemonData[2])*2 + 5);
+                pokemon.setDefense(Integer.parseInt(arrPokemonData[3])*2 + 5);
+                pokemon.setSpAttack(Integer.parseInt(arrPokemonData[4])*2 + 5);
+                pokemon.setSpDefense(Integer.parseInt(arrPokemonData[5])*2 + 5);
+                pokemon.setSpeed(Integer.parseInt(arrPokemonData[6])*2 + 5);
                 pokemon.setType(arrPokemonData[7]);
 
                 //we set the new moves

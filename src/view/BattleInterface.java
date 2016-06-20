@@ -129,7 +129,7 @@ public class BattleInterface extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        p_player_pokemon.setBackground(new java.awt.Color(0, 0, 0));
+        p_player_pokemon.setBackground(new java.awt.Color(241, 231, 231));
         p_player_pokemon.setForeground(new java.awt.Color(255, 255, 255));
 
         l_player_pokemon_name.setForeground(new java.awt.Color(255, 255, 255));
@@ -165,7 +165,7 @@ public class BattleInterface extends javax.swing.JFrame {
             .addComponent(l_image_player_pokemon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        p_enemy_pokemon.setBackground(new java.awt.Color(0, 0, 0));
+        p_enemy_pokemon.setBackground(new java.awt.Color(246, 234, 234));
 
         l_enemy_pokemon_name.setForeground(new java.awt.Color(245, 231, 231));
         l_enemy_pokemon_name.setText("Enemy Pokemon Name");

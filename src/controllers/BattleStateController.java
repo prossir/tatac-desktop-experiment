@@ -31,8 +31,7 @@ public class BattleStateController {
         }
 
         ImageIcon opponentImage = new ImageIcon("assets" + File.separator
-                + pokemon.getName() + "_" + trainerType + ".gif");
-        l_image_pokemon.setIcon(null);
+                + pokemon.getName() + "_" + trainerType + ".png");
         l_image_pokemon.setIcon(opponentImage);
 
         pb_pokemon_life.setStringPainted(true);
