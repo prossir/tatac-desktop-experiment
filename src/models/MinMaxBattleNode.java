@@ -13,8 +13,11 @@ public class MinMaxBattleNode {
     private List<MinMaxBattleNode> childNodes;
     private MinMaxBattleNode parentNode;
     private int chosenMove;
+    private int evaluation;
+    private boolean evaluated;
 
     public MinMaxBattleNode() {
+        evaluation = 0;
         childNodes = new ArrayList<>();
     }
 
@@ -96,16 +99,25 @@ public class MinMaxBattleNode {
         return chosenMove;
     }
 
-    public boolean endState() {
-        if ((getTeamA().get(0).getHitPoints() == 0
-                && getTeamA().get(1).getHitPoints() == 0
-                && getTeamA().get(2).getHitPoints() == 0)
-                || (getTeamB().get(0).getHitPoints() == 0
-                && getTeamB().get(1).getHitPoints() == 0
-                && getTeamB().get(2).getHitPoints() == 0)) {
-            return true;
-        }
+    public void setEvaluation(int value) {
+        evaluation = value;
+    }
 
-        return false;
+    public int getEvaluation() {
+        return evaluation;
+    }
+
+    /**
+     * @return the evaluated
+     */
+    public boolean isEvaluated() {
+        return evaluated;
+    }
+
+    /**
+     * @param evaluated the evaluated to set
+     */
+    public void setEvaluated(boolean evaluated) {
+        this.evaluated = evaluated;
     }
 }

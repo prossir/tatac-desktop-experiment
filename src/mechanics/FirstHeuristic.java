@@ -15,7 +15,7 @@ public class FirstHeuristic {
     public static int value(List<Pokemon> playerTeam, List<Pokemon> enemyTeam) {
         int total = 0;//Valor  de cada nodo final = vidaRestanteDeLosPokemonesDePC  - vidaRestanteDeNuestros pokemones
         for (int i = 0; i < playerTeam.size(); i++) {
-            total = total + playerTeam.get(i).getHitPoints() - enemyTeam.get(i).getHitPoints();
+            total = total + playerTeam.get(i).getHitPoints() - 2*enemyTeam.get(i).getHitPoints();
         }
         return total;
     }

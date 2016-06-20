@@ -10,9 +10,6 @@ import models.Pokemon;
  */
 public class MinMaxAlgorithm {
 
-    private static int maxValuation;
-    public static MinMaxBattleNode lastNode = null;
-
     //Team A is max, Team B is min
     public static MinMaxBattleNode generateMinMaxTree(List<Pokemon> teamA, int currentA,
             List<Pokemon> teamB, int currentB, int teamPlaying, int level) {
@@ -136,32 +133,71 @@ public class MinMaxAlgorithm {
 
     public static int findInTree(MinMaxBattleNode root) {
         int chosenMove, endgame = 0;
-        maxValuation = 9999;
-        MinMaxBattleNode cursor = root;
+        boolean chosen = false;
+        MinMaxBattleNode cursor = root, trueNode = null;
         for (int i = 0; i < cursor.getChildNodes().size(); i++) {
-            nexPossibleMove(cursor.getChildNodes().get(i));
+            findLeaves(cursor.getChildNodes().get(i));
         }
-        maxValuation = 9999;
 
-        //encontramos la raiz y el hijo con el movimiento elegido si el hijo y la
-        //raiz son iguales, la partida termina
-        while (lastNode.getParentNode() != null && lastNode.getParentNode().getParentNode() != null) {
-            lastNode = lastNode.getParentNode();
+        trueNode = cursor.getChildNodes().get(0);
+        //encontramos los hijos de la raiz el que tenga mayor valor es el siguiente mov.
+        for (int i = 0; i < cursor.getChildNodes().size(); i++) {
+            if (cursor.getChildNodes().get(i).getEvaluation() > 
+                    trueNode.getEvaluation()) {
+                trueNode = cursor.getChildNodes().get(i);
+            }
         }
-        return lastNode.getChosenMove();
+        
+        System.out.println(trueNode.getChosenMove());
+        return trueNode.getChosenMove();
     }
 
-    private static void nexPossibleMove(MinMaxBattleNode currentBattle) {
+    private static void findLeaves(MinMaxBattleNode currentBattle) {
         if (currentBattle.getChildNodes().isEmpty()) {
             int value = FirstHeuristic.value(currentBattle.getTeamA(), currentBattle.getTeamB());
-            if (value < maxValuation) {
-                maxValuation = value;
-                lastNode = currentBattle;
-            }
+            currentBattle.setEvaluation(value);
+            currentBattle.setEvaluated(true);
+            //como es con 5 nodos max (1 a 2), min (2 a 3), max (3 a 4) y min (4 a 5)
+            maximizeParent(currentBattle);
+
         } else {
             for (int i = 0; i < currentBattle.getChildNodes().size(); i++) {
-                nexPossibleMove(currentBattle.getChildNodes().get(i));
+                findLeaves(currentBattle.getChildNodes().get(i));
             }
+        }
+    }
+
+    private static void maximizeParent(MinMaxBattleNode currentBattle) {
+        List<MinMaxBattleNode> children = currentBattle.getChildNodes();
+        for (int i = 0; i < children.size(); i++) {
+            if (children.get(i).isEvaluated()) {
+                if (!currentBattle.isEvaluated()) {
+                    currentBattle.setEvaluation(children.get(i).getEvaluation());
+                    currentBattle.setEvaluated(true);
+                } else if (currentBattle.getEvaluation() <= children.get(i).getEvaluation()) {
+                    currentBattle.setEvaluation(children.get(i).getEvaluation());
+                }
+            }
+        }
+        if (currentBattle.getParentNode() != null) {
+            minimizeParent(currentBattle.getParentNode());
+        }
+    }
+
+    private static void minimizeParent(MinMaxBattleNode currentBattle) {
+        List<MinMaxBattleNode> children = currentBattle.getChildNodes();
+        for (int i = 0; i < children.size(); i++) {
+            if (children.get(i).isEvaluated()) {
+                if (!currentBattle.isEvaluated()) {
+                    currentBattle.setEvaluation(children.get(i).getEvaluation());
+                    currentBattle.setEvaluated(true);
+                } else if (currentBattle.getEvaluation() >= children.get(i).getEvaluation()) {
+                    currentBattle.setEvaluation(children.get(i).getEvaluation());
+                }
+            }
+        }
+        if (currentBattle.getParentNode() != null) {
+            maximizeParent(currentBattle);
         }
     }
 }
