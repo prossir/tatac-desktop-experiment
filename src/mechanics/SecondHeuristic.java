@@ -15,9 +15,11 @@ import models.Pokemon;
  */
 public class SecondHeuristic {
     
-    int cantPoblacionMax = 26;
-    double[] pesos;
-    public SecondHeuristic (List<Pokemon> playerTeam, List<Pokemon> enemyTeam){
+    private int cantPoblacionMax = 26;
+    private double[] pesos;
+    private double heuristicValue;
+    
+    public SecondHeuristic (){
         //Pesos manuales
         pesos[0] = 0.5;
         pesos[1] = 0.2;
@@ -30,6 +32,16 @@ public class SecondHeuristic {
         
         //Poblacion
         
+    }
+    
+    public double value(List<Pokemon> playerTeam, List<Pokemon> enemyTeam) {
+        double total = 0;//Funcion propuesta por el profesor de acuerdo a pesos
+        total = total + calculate_factor_1(playerTeam,enemyTeam)*pesos[0] +
+                calculate_factor_2(playerTeam,enemyTeam)*pesos[1] + 
+                calculate_factor_3(playerTeam,enemyTeam)*pesos[2] + 
+                calculate_factor_4(playerTeam,enemyTeam)*pesos[3] ;
+        heuristicValue = total;
+        return total;
     }
     
     // FACTORES PARA CREAR ESTRATEGIA EN JUGADA DE LA PC
@@ -76,11 +88,19 @@ public class SecondHeuristic {
         }        
         return sumaDefensaEnemy - sumaDefensaPlayer;
     }
-    
-    //FUNCION DE CREACION DE POBLACION
-    public void crear_poblacion(){
-        
+
+    /**
+     * @return the heuristicValue
+     */
+    public double getHeuristicValue() {
+        return heuristicValue;
+    }
+
+    /**
+     * @param heuristicValue the heuristicValue to set
+     */
+    public void setHeuristicValue(double heuristicValue) {
+        this.heuristicValue = heuristicValue;
     }
     
-    //FUNCION DE FITNESS
 }
