@@ -17,6 +17,7 @@ public class BattleInterface extends javax.swing.JFrame {
     private int currentPlayerAlive;
     private int currentEnemyAlive;
     private boolean battleWon;
+    private boolean winner; 
 
     public BattleInterface() {
         initComponents();
@@ -393,6 +394,7 @@ public class BattleInterface extends javax.swing.JFrame {
                         + " ha caido.");
                 if (currentPlayerAlive == 0) {
                     battleWon = true;
+                    winner = false;
                     l_announcement.setText("Has perdido");
                 }
 
@@ -437,6 +439,7 @@ public class BattleInterface extends javax.swing.JFrame {
             currentEnemyAlive--;
             if (currentEnemyAlive == 0) {
                 battleWon = true;
+                winner = true;
                 l_announcement.setText("Has ganado");
             }
         } else {
