@@ -14,8 +14,8 @@ public class Pokemon {
     private int spAttack;
     private int spDefense;
     private int speed;
-    private List<Move> moves;
-    private List<Move> choosenMoves;
+    private List<Move> moves = new ArrayList<>();
+    private List<Move> choosenMoves = new ArrayList<>();
     private String pokemonType;
 
     //Para el minMax
@@ -35,13 +35,7 @@ public class Pokemon {
         defense = pokemon.defense;
         speed = pokemon.speed;
         moves = pokemon.moves;
-        choosenMoves = new ArrayList<>();
-
-        choosenMoves.add(pokemon.getChosenMoves().get(0));
-        choosenMoves.add(pokemon.getChosenMoves().get(1));
-        choosenMoves.add(pokemon.getChosenMoves().get(2));
-        choosenMoves.add(pokemon.getChosenMoves().get(3));
-
+        choosenMoves = pokemon.choosenMoves;
         rateBurning = pokemon.rateBurning;
         ratePoisoning = pokemon.ratePoisoning;
         paralized = pokemon.paralized;
@@ -194,7 +188,7 @@ public class Pokemon {
 
     public int damage(Pokemon pokemon, int moveNumber) {
         int damage = (int) ((this.attack / (pokemon.getDefense() + pokemon.getSpeed() * 0.1))
-                * moves.get(moveNumber).getBasePower());
+                * choosenMoves.get(moveNumber).getBasePower());
         pokemon.setHitPoints(pokemon.getHitPoints() - damage);
         return damage;
     }
@@ -271,7 +265,7 @@ public class Pokemon {
 
     private int calculateDamage(Pokemon pokemon, int moveNumber) {
         int damage = (int) ((this.attack / (pokemon.getDefense() + pokemon.getSpeed() * 0.1))
-                * moves.get(moveNumber).getBasePower());
+                * choosenMoves.get(moveNumber).getBasePower());
         return damage;
     }
 }
