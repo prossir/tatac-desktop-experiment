@@ -32,6 +32,7 @@ public class MinMaxAlgorithm {
                     killed = teamA.get(currentA).bestDamage(teamB.get(currentB));
                     if (killed) {//current member kills oponent
                         boolean noReplacement = findReplacement(teamB, currentB);
+                        head.setChosenMove(1);//Only for testing purposes
                         if (!noReplacement) {
                             return head;
                         } else {
@@ -39,7 +40,9 @@ public class MinMaxAlgorithm {
                             return head;
                         }
                     } else {
-                        head.setChildNodes(branchOut(teamA, currentA, teamB, currentB, teamPlaying, level, 0));
+                        head.setChosenMove(1);//Only for testing purposes
+                        head.setChildNodes(branchOut(teamA, currentA, teamB, currentB, teamPlaying, level, 0));//create possible branches
+                        head.getChildNodes().add(generateMinMaxTree(teamA, currentA, teamB, currentB, 1 + teamPlaying, 1 + level));
                         return head;
 
                     }
@@ -54,16 +57,20 @@ public class MinMaxAlgorithm {
                 }
             } else {//current member not dead
                 killed = teamB.get(currentB).bestDamage(teamA.get(currentA));
+                head.setChosenMove(1);//Only for testing purposes
                 if (killed) {//current member kills oponent
                     boolean noReplacement = findReplacement(teamA, currentA);
                     if (!noReplacement) {
                         return head;
                     } else {
+                        head.setChosenMove(1);//Only for testing purposes
                         head.setChildNodes(branchOut(teamA, currentA, teamB, currentB, teamPlaying, level, 0));
                         return head;
                     }
                 } else {
+                    head.setChosenMove(1);//Only for testing purposes
                     head.setChildNodes(branchOut(teamA, currentA, teamB, currentB, teamPlaying, level, 0));
+                    head.getChildNodes().add(generateMinMaxTree(teamA, currentA, teamB, currentB, 1 + teamPlaying, 1 + level));
                     return head;
                 }
             }
@@ -139,15 +146,15 @@ public class MinMaxAlgorithm {
             findLeaves(cursor.getChildNodes().get(i));
         }
 
-        trueNode = root.getChildNodes().get(0);
         //encontramos los hijos de la raiz el que tenga mayor valor es el siguiente mov.
-        for (int i = 0; i < cursor.getChildNodes().size(); i++) {
-            if (cursor.getChildNodes().get(i).getEvaluation() < 
-                    trueNode.getEvaluation()) {
-                trueNode = cursor.getChildNodes().get(i);
+        trueNode = root.getChildNodes().get(0);
+        for (int i = 0; i < root.getChildNodes().size(); i++) {
+            if (root.getChildNodes().get(i).getEvaluation()
+                    > trueNode.getEvaluation()) {
+                trueNode = root.getChildNodes().get(i);
             }
         }
-        
+
         System.out.println(trueNode.getChosenMove());
         return trueNode.getChosenMove();
     }
