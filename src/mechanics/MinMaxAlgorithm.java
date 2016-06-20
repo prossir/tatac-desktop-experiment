@@ -17,7 +17,7 @@ public class MinMaxAlgorithm {
     public static MinMaxBattleNode generateMinMaxTree(List<Pokemon> teamA, int currentA,
             List<Pokemon> teamB, int currentB, int teamPlaying, int level) {
         if (level < 5) {
-            MinMaxBattleNode head = new MinMaxBattleNode();
+            MinMaxBattleNode head = new MinMaxBattleNode();//the head is the parent event
             head.setTeamA(teamA);
             head.setTeamB(teamB);
             //3 states: best movement  and change and already dead change 
@@ -28,7 +28,8 @@ public class MinMaxAlgorithm {
                     if (!noReplacement) {
                         return head;
                     } else {
-                        branchOut(teamA, currentA, teamB, currentB, teamPlaying, level, 0, head);
+                        head.setChildNodes(branchOut(teamA, currentA, teamB, currentB, teamPlaying, level, 0));
+                        return head;
                     }
                 } else {//current member not dead
                     killed = teamA.get(currentA).bestDamage(teamB.get(currentB));
@@ -37,8 +38,13 @@ public class MinMaxAlgorithm {
                         if (!noReplacement) {
                             return head;
                         } else {
-                            branchOut(teamA, currentA, teamB, currentB, teamPlaying, level, 1, head);
+                            head.setChildNodes(branchOut(teamA, currentA, teamB, currentB, teamPlaying, level, 1));
+                            return head;
                         }
+                    } else {
+                        head.setChildNodes(branchOut(teamA, currentA, teamB, currentB, teamPlaying, level, 0));
+                        return head;
+
                     }
                 }
             } else if (teamB.get(currentB).getHitPoints() <= 0) {//current member is dead
@@ -46,7 +52,8 @@ public class MinMaxAlgorithm {
                 if (!noReplacement) {
                     return head;
                 } else {
-                    branchOut(teamA, currentA, teamB, currentB, teamPlaying, level, 1, head);
+                    head.setChildNodes(branchOut(teamA, currentA, teamB, currentB, teamPlaying, level, 1));
+                    return head;
                 }
             } else {//current member not dead
                 killed = teamB.get(currentB).bestDamage(teamA.get(currentA));
@@ -55,17 +62,75 @@ public class MinMaxAlgorithm {
                     if (!noReplacement) {
                         return head;
                     } else {
-                        branchOut(teamA, currentA, teamB, currentB, teamPlaying, level, 0, head);
+                        head.setChildNodes(branchOut(teamA, currentA, teamB, currentB, teamPlaying, level, 0));
+                        return head;
                     }
+                } else {
+                    head.setChildNodes(branchOut(teamA, currentA, teamB, currentB, teamPlaying, level, 0));
+                    return head;
                 }
             }
-            return head;
         } else {
             MinMaxBattleNode head = new MinMaxBattleNode();
             head.setTeamA(teamA);
             head.setTeamB(teamB);
 
             return head;
+        }
+    }
+
+    private static boolean findReplacement(List<Pokemon> teamA, int currentA) {
+        for (int i = 0; i < teamA.size(); i++) {
+            if (i != currentA && teamA.get(i).getHitPoints() != 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static List<MinMaxBattleNode> branchOut(List<Pokemon> teamA, int currentA,
+            List<Pokemon> teamB, int currentB, int teamPlaying, int level, int AorB) {
+        List<MinMaxBattleNode> childNodes = new ArrayList<>();
+        if (AorB == 0) {
+            for (int i = 0; i < teamA.size(); i++) {
+                if (i != currentA && teamA.get(i).getHitPoints() != 0) {
+                    MinMaxBattleNode child = generateMinMaxTree(teamA, i,
+                            teamB, currentB, 1 + teamPlaying, 1 + level);
+                    switch (i) {
+                        case 0:
+                            child.setChosenMove(-1);
+                            break;
+                        case 1:
+                            child.setChosenMove(-2);
+                            break;
+                        case 2:
+                            child.setChosenMove(-3);
+                            break;
+                    }
+                    childNodes.add(child);
+                }
+            }
+            return childNodes;
+        } else {
+            for (int i = 0; i < teamB.size(); i++) {
+                if (i != currentB && teamB.get(i).getHitPoints() != 0) {
+                    MinMaxBattleNode child = generateMinMaxTree(teamA, currentA,
+                            teamB, i, 1 + teamPlaying, 1 + level);
+                    switch (i) {
+                        case 0:
+                            child.setChosenMove(-1);
+                            break;
+                        case 1:
+                            child.setChosenMove(-2);
+                            break;
+                        case 2:
+                            child.setChosenMove(-3);
+                            break;
+                    }
+                    childNodes.add(child);
+                }
+            }
+            return childNodes;
         }
     }
 
@@ -79,11 +144,9 @@ public class MinMaxAlgorithm {
         //        endgame++;
         //    }
         //}
-
         //if (endgame == cursor.getChildNodes().size()) {
         //    return -4;
         //}
-
         for (int i = 0; i < cursor.getChildNodes().size(); i++) {
             nexPossibleMove(cursor.getChildNodes().get(i));
         }
@@ -109,71 +172,5 @@ public class MinMaxAlgorithm {
                 nexPossibleMove(currentBattle.getChildNodes().get(i));
             }
         }
-    }
-
-    private static boolean findReplacement(List<Pokemon> teamA, int currentA) {
-        for (int i = 0; i < teamA.size(); i++) {
-            if (i != currentA && teamA.get(i).getHitPoints() != 0) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static void branchOut(List<Pokemon> teamA, int currentA, List<Pokemon> teamB,
-            int currentB, int teamPlaying, int level, int AorB, MinMaxBattleNode head) {
-        if (AorB == 0) {
-            for (int i = 0; i < teamA.size(); i++) {
-                if (i != currentA && teamA.get(i).getHitPoints() != 0) {
-                    List<Pokemon> copyTeamA = copyTeam(teamA);
-                    List<Pokemon> copyTeamB = copyTeam(teamA);
-                    MinMaxBattleNode child = generateMinMaxTree(copyTeamA, i,
-                            copyTeamB, currentB, 1 + teamPlaying, 1 + level);
-                    child.setParentNode(head);
-                    switch (i) {
-                        case 0:
-                            child.setChosenMove(-1);
-                            break;
-                        case 1:
-                            child.setChosenMove(-2);
-                            break;
-                        case 2:
-                            child.setChosenMove(-3);
-                            break;
-                    }
-                    head.getChildNodes().add(child);
-                }
-            }
-        } else {
-            for (int i = 0; i < teamB.size(); i++) {
-                if (i != currentB && teamB.get(i).getHitPoints() != 0) {
-                    List<Pokemon> copyTeamA = copyTeam(teamA);
-                    List<Pokemon> copyTeamB = copyTeam(teamA);
-                    MinMaxBattleNode child = generateMinMaxTree(copyTeamA, currentA,
-                            copyTeamB, i, 1 + teamPlaying, 1 + level);
-                    child.setParentNode(head);
-                    switch (i) {
-                        case 0:
-                            child.setChosenMove(-1);
-                            break;
-                        case 1:
-                            child.setChosenMove(-2);
-                            break;
-                        case 2:
-                            child.setChosenMove(-3);
-                            break;
-                    }
-                    head.getChildNodes().add(child);
-                }
-            }
-        }
-    }
-
-    private static List<Pokemon> copyTeam(List<Pokemon> originalTeam) {
-        List<Pokemon> copyTeam = new ArrayList<>();
-        for (int i = 0; i < originalTeam.size(); i++) {
-            copyTeam.add(new Pokemon(originalTeam.get(i)));
-        }
-        return copyTeam;
     }
 }

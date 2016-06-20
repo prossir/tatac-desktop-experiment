@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -55,11 +56,21 @@ public class BattleStateController {
 
     public static int enemyMove(List<Pokemon> enemyTeam, int currentEnemyPokemon,
             List<Pokemon> playerTeam, int currentPlayerPokemon) {
-        int chosenMove = 0;        
+        int chosenMove = 0;
+        List<Pokemon> copyEnemyTeam = copyTeam(enemyTeam);
+        List<Pokemon> copyPlayerTeam = copyTeam(playerTeam);
         MinMaxBattleNode root = MinMaxAlgorithm.generateMinMaxTree(
-                enemyTeam, currentEnemyPokemon,
-                playerTeam, currentPlayerPokemon, 0, 0);
+                copyEnemyTeam, currentEnemyPokemon,
+                copyPlayerTeam, currentPlayerPokemon, 0, 0);
         chosenMove = MinMaxAlgorithm.findInTree(root);
         return chosenMove;
+    }
+
+    private static List<Pokemon> copyTeam(List<Pokemon> originalTeam) {
+        List<Pokemon> copyTeam = new ArrayList<>();
+        for (int i = 0; i < originalTeam.size(); i++) {
+            copyTeam.add(new Pokemon(originalTeam.get(i)));
+        }
+        return copyTeam;
     }
 }
