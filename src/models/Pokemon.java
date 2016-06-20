@@ -185,7 +185,7 @@ public class Pokemon {
         int maxDamage = -9999;
         //jugada del 0 al 3, el numero 4 es cambiar
         for (int i = 0; i < this.getChosenMoves().size(); i++) {
-            int damage = this.damage(p, i);
+            int damage = this.calculateDamage(p, i);
             if (maxDamage < damage) {
                 maxDamage = damage;
             }
@@ -198,5 +198,11 @@ public class Pokemon {
 
         p.setHitPoints(p.getHitPoints() - maxDamage);
         return false;
+    }
+
+    private int calculateDamage(Pokemon pokemon, int moveNumber) {
+        int damage = (int) ((this.attack / (pokemon.getDefense() + pokemon.getSpeed() * 0.1))
+                * moves.get(moveNumber).getBasePower());
+        return damage;
     }
 }
