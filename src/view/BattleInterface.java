@@ -16,6 +16,7 @@ public class BattleInterface extends javax.swing.JFrame {
     private int currentEnemyPokemon;
     private int currentPlayerAlive;
     private int currentEnemyAlive;
+    private boolean battleWon;
 
     public BattleInterface() {
         initComponents();
@@ -29,6 +30,7 @@ public class BattleInterface extends javax.swing.JFrame {
         currentEnemyAlive = computerTeam.size();
         currentEnemyPokemon = 0;
         currentPlayerPokemon = 0;
+        battleWon = false;
         initComponents();
         loadBattle();
     }
@@ -327,11 +329,15 @@ public class BattleInterface extends javax.swing.JFrame {
     }
 
     private void executeTurnAndResponse(int chosenMove) {
-        if (playerTeam.get(currentPlayerPokemon).getSpeed() //The player pokemon is quicker than the other
-                >= enemyTeam.get(currentEnemyPokemon).getSpeed()) {
-            playerBeginsTurn(chosenMove);
-        } else {//Enemy plays last
-            enemyBeginsTurn(chosenMove);
+        if (!battleWon) {
+            if (playerTeam.get(currentPlayerPokemon).getSpeed() //The player pokemon is quicker than the other
+                    >= enemyTeam.get(currentEnemyPokemon).getSpeed()) {
+                playerBeginsTurn(chosenMove);
+            } else {//Enemy plays last
+                enemyBeginsTurn(chosenMove);
+            }
+        } else {
+            l_announcement.setText("Ya habeis ganado pibe.");
         }
     }
 
@@ -386,6 +392,7 @@ public class BattleInterface extends javax.swing.JFrame {
                 l_announcement.setText(playerTeam.get(currentPlayerPokemon).getName()
                         + " ha caido.");
                 if (currentPlayerAlive == 0) {
+                    battleWon = true;
                     l_announcement.setText("Has perdido");
                 }
 
@@ -426,14 +433,11 @@ public class BattleInterface extends javax.swing.JFrame {
                 l_enemy_pokemon_status, 0, null, null, null, null);
 
         if (enemyTeam.get(currentEnemyPokemon).getHitPoints() <= 0) {
-            l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
-                    + " ha hecho " + damage + "de danho, con "
-                    + playerTeam.get(currentPlayerPokemon).getChosenMoves().get(chosenMove).getName());
-
+            l_announcement.setText("El pokemon enemigo a caido");
             currentEnemyAlive--;
             if (currentEnemyAlive == 0) {
+                battleWon = true;
                 l_announcement.setText("Has ganado");
-
             }
         } else {
             l_announcement.setText(" " + playerTeam.get(currentPlayerPokemon).getName()
