@@ -18,13 +18,14 @@ public class BattleInterface extends javax.swing.JFrame {
     private int currentEnemyAlive;
     private boolean battleWon;
     private boolean winner; 
+    private boolean genetic;
 
     public BattleInterface() {
         initComponents();
         loadBattle();
     }
 
-    public BattleInterface(List<Pokemon> playerTeam, List<Pokemon> computerTeam) {
+    public BattleInterface(List<Pokemon> playerTeam, List<Pokemon> computerTeam, boolean genetic) {
         this.playerTeam = playerTeam;
         this.enemyTeam = computerTeam;
         currentPlayerAlive = playerTeam.size();
@@ -32,6 +33,7 @@ public class BattleInterface extends javax.swing.JFrame {
         currentEnemyPokemon = 0;
         currentPlayerPokemon = 0;
         battleWon = false;
+        this.genetic = genetic;
         initComponents();
         loadBattle();
     }

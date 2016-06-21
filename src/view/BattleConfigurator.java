@@ -41,6 +41,11 @@ public class BattleConfigurator extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         b_training.setText("Train Computer");
+        b_training.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_trainingActionPerformed(evt);
+            }
+        });
 
         b_battle.setText("Minimax");
         b_battle.addActionListener(new java.awt.event.ActionListener() {
@@ -101,8 +106,34 @@ public class BattleConfigurator extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+// ORIGINAL MINIMAX (COMPLETED ONE)
     private void b_battleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_battleActionPerformed
+        int numberOfPokemonsOnDatabase = 7;
+        int numberOfPokemonsPerTeam = 3;
+        List<Pokemon> allPokemons = PokemonLoaderController.loadPokemon(numberOfPokemonsOnDatabase);
+        List<Pokemon> playerTeam = new ArrayList<>();
+        List<Pokemon> computerTeam = new ArrayList<>();
+        PokemonLoaderController.init(allPokemons, playerTeam, computerTeam, numberOfPokemonsPerTeam,
+                numberOfPokemonsOnDatabase);
+        BattleInterface battleInterface = new BattleInterface(playerTeam, computerTeam, false);
+        battleInterface.setVisible(true);
+    }//GEN-LAST:event_b_battleActionPerformed
+
+//GENETICALLY TRAINED MINIMAX
+    private void b_trained_minimaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_trained_minimaxActionPerformed
+        int numberOfPokemonsOnDatabase = 7;
+        int numberOfPokemonsPerTeam = 3;
+        List<Pokemon> allPokemons = PokemonLoaderController.loadPokemon(numberOfPokemonsOnDatabase);
+        List<Pokemon> playerTeam = new ArrayList<>();
+        List<Pokemon> computerTeam = new ArrayList<>();
+        PokemonLoaderController.init(allPokemons, playerTeam, computerTeam, numberOfPokemonsPerTeam,
+                numberOfPokemonsOnDatabase);
+        BattleInterface battleInterface = new BattleInterface(playerTeam, computerTeam, true);
+        battleInterface.setVisible(true);
+    }//GEN-LAST:event_b_trained_minimaxActionPerformed
+
+//RANDOM ALGORITHM
+    private void b_barcenamon_battleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_barcenamon_battleActionPerformed
         int numberOfPokemonsOnDatabase = 7;
         int numberOfPokemonsPerTeam = 3;
         List<Pokemon> allPokemons = PokemonLoaderController.loadPokemon(numberOfPokemonsOnDatabase);
@@ -112,15 +143,19 @@ public class BattleConfigurator extends javax.swing.JFrame {
                 numberOfPokemonsOnDatabase);
         BattleInterface battleInterface = new BattleInterface(playerTeam, computerTeam);
         battleInterface.setVisible(true);
-    }//GEN-LAST:event_b_battleActionPerformed
-
-    private void b_trained_minimaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_trained_minimaxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_b_trained_minimaxActionPerformed
-
-    private void b_barcenamon_battleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_barcenamon_battleActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_b_barcenamon_battleActionPerformed
+
+//AUTOMATIC TRAINING FOR THE GENETIC
+    private void b_trainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_trainingActionPerformed
+        int numberOfPokemonsOnDatabase = 7;
+        int numberOfPokemonsPerTeam = 3;
+        List<Pokemon> allPokemons = PokemonLoaderController.loadPokemon(numberOfPokemonsOnDatabase);
+        List<Pokemon> playerTeam = new ArrayList<>();
+        List<Pokemon> computerTeam = new ArrayList<>();
+        PokemonLoaderController.init(allPokemons, playerTeam, computerTeam, numberOfPokemonsPerTeam,
+                numberOfPokemonsOnDatabase);
+        //THIS SHOULD CALL THE GENETIC CLASS (NO SCREEN NECCESARY).
+    }//GEN-LAST:event_b_trainingActionPerformed
 
     /**
      * @param args the command line arguments
