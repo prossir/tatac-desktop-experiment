@@ -141,7 +141,7 @@ public class BattleConfigurator extends javax.swing.JFrame {
         List<Pokemon> computerTeam = new ArrayList<>();
         PokemonLoaderController.init(allPokemons, playerTeam, computerTeam, numberOfPokemonsPerTeam,
                 numberOfPokemonsOnDatabase);
-        BattleInterface battleInterface = new BattleInterface(playerTeam, computerTeam);
+        BattleInterfaceRandom battleInterface = new BattleInterfaceRandom(playerTeam, computerTeam);
         battleInterface.setVisible(true);
     }//GEN-LAST:event_b_barcenamon_battleActionPerformed
 
