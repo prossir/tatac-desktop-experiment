@@ -156,7 +156,7 @@ public class Pokemon {
      * @param moveNumber
      * @return
      */
-    public int attack(Pokemon pokemon, int moveNumber) {
+    public int atacar(Pokemon pokemon, int moveNumber) {
         int badLuck = (int) (Math.random() * 100);
         if (badLuck < moves.get(moveNumber).getAccuracy()) {
             //Sí le cae el ataque

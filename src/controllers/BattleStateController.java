@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import mechanics.MinMaxAlgorithm;
+import mechanics.MinMaxAlgorithmRecursive;
 import models.MinMaxBattleNode;
 import models.Pokemon;
 
@@ -63,8 +64,17 @@ public class BattleStateController {
         MinMaxBattleNode root = MinMaxAlgorithm.generateMinMaxTree(
                 copyEnemyTeam, currentEnemyPokemon,
                 copyPlayerTeam, currentPlayerPokemon, 0, 0);
+        root.setActualB(currentPlayerPokemon);
+        root.setActualA(currentEnemyPokemon);
+        root.setNivel(0);
+        root.setTurnoAoB(0);
+        System.out.println("ROOT ANTES "+root.getChosenMove());
+        MinMaxAlgorithmRecursive.nextMove(root);
+        System.out.println("ROOT DESPUES "+root.getChosenMove());
+        
+        chosenMove= root.getChosenMove();
         //Minimax escoge con su heuristica el mejor camino
-        chosenMove = MinMaxAlgorithm.findInTree(root);
+        //chosenMove = MinMaxAlgorithm.findInTree(root);
         return chosenMove;
     }
 

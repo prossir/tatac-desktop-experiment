@@ -367,37 +367,51 @@ public class BattleInterface extends javax.swing.JFrame {
                 break;
         }
     }
+    
+    private boolean noSeCae(int moveChoosen){
+        int damage;
+        try{
+         damage= enemyTeam.get(0).damage(playerTeam.get(currentPlayerPokemon), moveChoosen);
+         return true;
+      }catch(ArrayIndexOutOfBoundsException e){
+         return false;
+      }
+    }
 
     private int enemyPlays() {
         int moveChoosen = BattleStateController.enemyMove(enemyTeam, currentEnemyPokemon, playerTeam,
                 currentPlayerPokemon);
         if (moveChoosen > -1) {
-            int damage = enemyTeam.get(0).damage(playerTeam.get(currentPlayerPokemon), moveChoosen);
+            int damage;
+            boolean todoBien = noSeCae(moveChoosen);
+            if (todoBien) {
+                damage = enemyTeam.get(0).damage(playerTeam.get(currentPlayerPokemon), moveChoosen);
 
-            BattleStateController.setPokemon(playerTeam.get(currentPlayerPokemon),
-                    l_image_player_pokemon, pb_player_pokemon_life, l_player_pokemon_name,
-                    l_player_pokemon_status, 1, b_move1, b_move2, b_move3, b_move4);
+                BattleStateController.setPokemon(playerTeam.get(currentPlayerPokemon),
+                        l_image_player_pokemon, pb_player_pokemon_life, l_player_pokemon_name,
+                        l_player_pokemon_status, 1, b_move1, b_move2, b_move3, b_move4);
 
-            if (playerTeam.get(currentPlayerPokemon).getHitPoints() > 0) {//our pokemon is still alive            
-                l_announcement.setText("El " + enemyTeam.get(currentEnemyPokemon).getName()
-                        + " enemigo ha hecho "
-                        + damage
-                        + "de danho, con "
-                        + enemyTeam.get(0).getChosenMoves().get(moveChoosen).getName());
-                return 1; //player pokemon still alive
-            } else {//our pokemon dies
-                disableMoves();
-                currentPlayerAlive--;
-                l_announcement.setText(playerTeam.get(currentPlayerPokemon).getName()
-                        + " ha caido.");
-                if (currentPlayerAlive == 0) {
-                    battleWon = true;
-                    winner = false;
-                    l_announcement.setText("Has perdido");
+                if (playerTeam.get(currentPlayerPokemon).getHitPoints() > 0) {//our pokemon is still alive            
+                    l_announcement.setText("El " + enemyTeam.get(currentEnemyPokemon).getName()
+                            + " enemigo ha hecho "
+                            + damage
+                            + "de danho, con "
+                            + enemyTeam.get(0).getChosenMoves().get(moveChoosen).getName());
+                    return 1; //player pokemon still alive
+                } else {//our pokemon dies
+                    disableMoves();
+                    currentPlayerAlive--;
+                    l_announcement.setText(playerTeam.get(currentPlayerPokemon).getName()
+                            + " ha caido.");
+                    if (currentPlayerAlive == 0) {
+                        battleWon = true;
+                        winner = false;
+                        l_announcement.setText("Has perdido");
+                    }
+
+                    return 0; //player pokemon is dead
                 }
-
-                return 0; //player pokemon is dead
-            }
+            }else return  0;
         } else {// -1 -> 0; -2 -> 1 ...
             switch (moveChoosen) {
                 case -1:

@@ -8,13 +8,19 @@ import java.util.List;
  */
 public class MinMaxBattleNode {
 
-    private List<Pokemon> teamA;
-    private List<Pokemon> teamB;
+    private List<Pokemon> teamA;                   //
+    private List<Pokemon> teamB;                   //
     private List<MinMaxBattleNode> childNodes;
     private MinMaxBattleNode parentNode;
-    private int chosenMove;
+    private int chosenMove;                        //
     private int evaluation;
     private boolean evaluated;
+    
+    //NUEVOS ATRIBUTOS PARA EL MINMAXRECURSIVO 
+    private int actualA;
+    private int actualB;
+    private int turnoAoB; 
+    private int nivel;
 
     public MinMaxBattleNode() {
         evaluation = 0;
@@ -119,5 +125,61 @@ public class MinMaxBattleNode {
      */
     public void setEvaluated(boolean evaluated) {
         this.evaluated = evaluated;
+    }
+
+    /**
+     * @return the actualA
+     */
+    public int getActualA() {
+        return actualA;
+    }
+
+    /**
+     * @param actualA the actualA to set
+     */
+    public void setActualA(int actualA) {
+        this.actualA = actualA;
+    }
+
+    /**
+     * @return the actualB
+     */
+    public int getActualB() {
+        return actualB;
+    }
+
+    /**
+     * @param actualB the actualB to set
+     */
+    public void setActualB(int actualB) {
+        this.actualB = actualB;
+    }
+
+    /**
+     * @return the turnoAoB
+     */
+    public int getTurnoAoB() {
+        return turnoAoB;
+    }
+
+    /**
+     * @param turnoAoB the turnoAoB to set
+     */
+    public void setTurnoAoB(int turnoAoB) {
+        this.turnoAoB = turnoAoB;
+    }
+
+    /**
+     * @return the nivel
+     */
+    public int getNivel() {
+        return nivel;
+    }
+
+    /**
+     * @param nivel the nivel to set
+     */
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
     }
 }
