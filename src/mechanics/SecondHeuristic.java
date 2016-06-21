@@ -13,10 +13,10 @@ import models.Pokemon;
  *
  * @author paolo
  */
-public class SecondHeuristic {
+public  class SecondHeuristic {
     
-    private double[] pesos;
-    private double heuristicValue;
+    private static double[] pesos = new double[4];
+    private  double heuristicValue;
     
     public SecondHeuristic (){
         //Pesos manuales
@@ -33,18 +33,18 @@ public class SecondHeuristic {
         
     }
     
-    public double value(List<Pokemon> playerTeam, List<Pokemon> enemyTeam) {
+    public static double value(List<Pokemon> playerTeam, List<Pokemon> enemyTeam) {
         double total = 0;//Funcion propuesta por el profesor de acuerdo a pesos
         total = total + calculate_factor_1(playerTeam,enemyTeam)*pesos[0] +
                 calculate_factor_2(playerTeam,enemyTeam)*pesos[1] + 
                 calculate_factor_3(playerTeam,enemyTeam)*pesos[2] + 
                 calculate_factor_4(playerTeam,enemyTeam)*pesos[3] ;
-        heuristicValue = total;
+        //heuristicValue = total;
         return total;
     }
     
     // FACTORES PARA CREAR ESTRATEGIA EN JUGADA DE LA PC
-    public double calculate_factor_1(List<Pokemon> playerTeam, List<Pokemon> enemyTeam){
+    public  static double calculate_factor_1(List<Pokemon> playerTeam, List<Pokemon> enemyTeam){
         //suponiendo que A es player (humano), B es enemy (PC)
         int sumaVidaEnemy = 0, sumaVidaPlayer=0;
         for (int i = 0; i<playerTeam.size();i++){
@@ -55,7 +55,7 @@ public class SecondHeuristic {
         }        
         return sumaVidaEnemy - sumaVidaPlayer;
     }
-    public double calculate_factor_2(List<Pokemon> playerTeam, List<Pokemon> enemyTeam){
+    public static double calculate_factor_2(List<Pokemon> playerTeam, List<Pokemon> enemyTeam){
         int vivosEnemy = 0, vivosPlayer=0;
         for (int i = 0; i<playerTeam.size();i++){
             if(playerTeam.get(i).getHitPoints()>0)
@@ -67,7 +67,7 @@ public class SecondHeuristic {
         }       
         return vivosEnemy - vivosPlayer;
     }
-    public double calculate_factor_3(List<Pokemon> playerTeam, List<Pokemon> enemyTeam){
+    public static double calculate_factor_3(List<Pokemon> playerTeam, List<Pokemon> enemyTeam){
         int sumaAtaqueEnemy = 0, sumaAtaquePlayer=0;
         for (int i = 0; i<playerTeam.size();i++){
             sumaAtaquePlayer=sumaAtaquePlayer+playerTeam.get(i).getAttack();
@@ -77,7 +77,7 @@ public class SecondHeuristic {
         }        
         return sumaAtaqueEnemy - sumaAtaquePlayer;
     }
-    public double calculate_factor_4(List<Pokemon> playerTeam, List<Pokemon> enemyTeam){
+    public static double calculate_factor_4(List<Pokemon> playerTeam, List<Pokemon> enemyTeam){
         int sumaDefensaEnemy = 0, sumaDefensaPlayer=0;
         for (int i = 0; i<playerTeam.size();i++){
             sumaDefensaPlayer=sumaDefensaPlayer+playerTeam.get(i).getAttack();
@@ -101,5 +101,9 @@ public class SecondHeuristic {
     public void setHeuristicValue(double heuristicValue) {
         this.heuristicValue = heuristicValue;
     }
+
+    /**
+     * @return the pesos
+     */
     
 }

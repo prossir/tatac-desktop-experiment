@@ -68,6 +68,7 @@ public class BattleStateController {
         root.setActualA(currentEnemyPokemon);
         root.setNivel(0);
         root.setTurnoAoB(0);
+        root.setGeneticFlag(1);
         System.out.println("ROOT ANTES "+root.getChosenMove());
         MinMaxAlgorithmRecursive.nextMove(root);
         System.out.println("ROOT DESPUES "+root.getChosenMove());

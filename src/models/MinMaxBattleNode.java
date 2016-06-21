@@ -21,6 +21,7 @@ public class MinMaxBattleNode {
     private int actualB;
     private int turnoAoB; 
     private int nivel;
+    private int geneticFlag=0;
 
     public MinMaxBattleNode() {
         evaluation = 0;
@@ -181,5 +182,19 @@ public class MinMaxBattleNode {
      */
     public void setNivel(int nivel) {
         this.nivel = nivel;
+    }
+
+    /**
+     * @return the geneticFlag
+     */
+    public int getGeneticFlag() {
+        return geneticFlag;
+    }
+
+    /**
+     * @param geneticFlag the geneticFlag to set
+     */
+    public void setGeneticFlag(int geneticFlag) {
+        this.geneticFlag = geneticFlag;
     }
 }

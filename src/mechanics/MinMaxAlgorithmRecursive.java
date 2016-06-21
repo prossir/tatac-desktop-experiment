@@ -29,15 +29,19 @@ nodo.chosenMove  //0,1,2,3 ataque Pokemon; 4,5: cambio de pokemon
 */
 public class MinMaxAlgorithmRecursive {
     
-    public static int fh (MinMaxBattleNode nodo ){
-        int vidaA =0,vidaB=0;
-        for (Pokemon p : nodo.getTeamA()){
-          vidaA+= p.getHitPoints();
+    public static double  fh (MinMaxBattleNode nodo ){
+        if (nodo.getGeneticFlag()==0){
+            int vidaA = 0, vidaB = 0;
+            for (Pokemon p : nodo.getTeamA()) {
+                vidaA += p.getHitPoints();
+            }
+            for (Pokemon p : nodo.getTeamB()) {
+                vidaB += p.getHitPoints();
+            }
+            return vidaA - vidaB;
+        } else {
+            return SecondHeuristic.value(nodo.getTeamB(), nodo.getTeamA());
         }
-        for (Pokemon p : nodo.getTeamB()){
-          vidaB+= p.getHitPoints();
-        }
-        return vidaA-vidaB;
     }
     
     
